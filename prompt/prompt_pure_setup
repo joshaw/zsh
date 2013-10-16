@@ -72,9 +72,6 @@ prompt_pure_setup() {
 	# show username@host if logged in through SSH
 	[[ "$SSH_CONNECTION" != '' ]] && prompt_pure_username='%n@%m '
 
-	echo "############################"
-	echo "This is a testing environment. Please do not trust it too much"
-	echo "############################"
 	# prompt turns red if the previous command didn't exit with 0
 	PROMPT='%(?.%F{green}.%F{red})❯%f '
 	RPROMPT='%*'
