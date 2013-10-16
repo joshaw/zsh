@@ -92,15 +92,17 @@ alias useless='while [ true ]; do head -n 100 /dev/urandom; sleep .1; done | hex
 
 alias time-update='sudo ntpdate pool.ntp.org'
 #alias t='clear; todo.sh -d ~/.todo.cfg'
-function t {
-	if [ $# -eq 0 ]; then
-		clear
-		todo.sh -t -d ~/.todo.cfg
-	else
-		todo.sh -t -d ~/.todo.cfg $@
-	fi
-}
-compdef t=todo.sh
+if (( $+commands[todo.sh] )); then
+	function t {
+		if [ $# -eq 0 ]; then
+			clear
+			todo.sh -t -d ~/.todo.cfg
+		else
+			todo.sh -t -d ~/.todo.cfg $@
+		fi
+	}
+	compdef t=todo.sh
+fi
 
 # Media -------------------------------
 alias mplayer='mplayer -msgcolor -nolirc -nojoystick'

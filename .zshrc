@@ -1,4 +1,6 @@
-fortune
+if (( $+commands[fortune] )); then
+	fortune
+fi
 
 files=(\
 	'prompt'\
