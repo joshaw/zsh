@@ -10,7 +10,7 @@
 # Variables
 #
 
-HISTFILE="/home/josh/.zsh/zhistory"       # The path to the history file.
+HISTFILE="/home/josh/.zsh/.zhistory"       # The path to the history file.
 HISTSIZE=10000                   # The maximum number of events to save in the internal history.
 SAVEHIST=10000                   # The maximum number of events to save in the history file.
 
@@ -33,6 +33,3 @@ setopt HIST_BEEP                 # Beep when accessing non-existent history.
 
 # Source module files.
 source "/home/josh/.zsh/history-substring-search/zsh-history-substring-search.zsh"
-
-bindkey '[A' history-substring-search-up
-bindkey '[B' history-substring-search-down
