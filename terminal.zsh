@@ -83,19 +83,22 @@ function set-titles-with-path {
 }
 
 # Don't override precmd/preexec; append to hook array.
-autoload -Uz add-zsh-hook
+autoload -U is-at-least
+if is-at-least 5.0.0; then
+	autoload -Uz add-zsh-hook
 
-# Sets the tab and window titles before the prompt is displayed.
-function set-titles-precmd {
-	set-titles-with-path
-}
-add-zsh-hook precmd set-titles-precmd
+	# Sets the tab and window titles before the prompt is displayed.
+	function set-titles-precmd {
+		set-titles-with-path
+	}
+	add-zsh-hook precmd set-titles-precmd
 
-# Sets the tab and window titles before command execution.
-function set-titles-preexec {
-	set-titles-with-command "$2"
-}
-add-zsh-hook preexec set-titles-preexec
+	# Sets the tab and window titles before command execution.
+	function set-titles-preexec {
+		set-titles-with-command "$2"
+	}
+	add-zsh-hook preexec set-titles-preexec
+fi
 
-bindkey '^[[5D' emacs-backward-word
-bindkey '^[[5C' emacs-forward-word
+bindkey '^[[D' backward-word
+bindkey '^[[C' forward-word
