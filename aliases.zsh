@@ -22,8 +22,9 @@ alias p='${(z)PAGER}'
 alias po='popd'
 alias pu='pushd'
 alias type='type -a'
+alias x='exit'
 
-alias ls='ls --color=auto' # Lists with colour enabled
+alias ls='ls --color=auto --group-directories-first' # Lists with colour enabled
 alias l='ls -1A'           # Lists in one column, hidden files.
 alias ll='ls -lh'          # Lists human readable sizes.
 alias lr='ll -R'           # Lists human readable sizes, recursively.
@@ -162,4 +163,38 @@ shebang() {
 	else
 		echo "'which' could not find $1, is it in your \$PATH?";
 	fi;
+}
+
+############################
+#  Zsh Bookmark movements  #
+############################
+ZSH_BOOKMARKS="$HOME/.zsh/cdbookmarks"
+
+function cdb_edit() {
+	$EDITOR "$ZSH_BOOKMARKS"
+}
+
+function cdb() {
+	local entry
+	index=0
+	for entry in $(echo "$1" | tr '/' '\n'); do
+		local CD
+		CD=$(egrep "^$entry\\s" "$ZSH_BOOKMARKS" | sed "s#^$entry\\s\+##")
+		if [ -z "$CD" ]; then
+			echo "$0: no such bookmark: $entry"
+			return 1
+		else
+			builtin cd "$CD"
+		fi
+	done
+}
+
+function _cdb() {
+	reply=(`cat "$ZSH_BOOKMARKS" | sed -e 's#^\(.*\)\s.*$#\1#g'`)
+}
+
+compctl -K _cdb cdb
+
+function zipsww (){
+	zip -r9 MSc7-wainwright-${1:l} $1 -i "*.java"
 }
