@@ -12,6 +12,7 @@ files=(\
 	'aliases'\
 	'history'\
 	'syntax-highlighting'\
+	'keybindings'\
 	)
 
 for file in $files; do
