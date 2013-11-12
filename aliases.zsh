@@ -87,12 +87,11 @@ alias dot='cd ~/dotfiles'
 alias redwm='cd ~/.scripts/dwm; makepkg -g >> PKGBUILD; makepkg -fi --noconfirm; killall dwm'
 
 alias g++='g++ -Wall -o'
+alias junit='java org.junit.runner.JUnitCore'
 
 # Pointess command to look wierd and cool
 alias useless='while [ true ]; do head -n 100 /dev/urandom; sleep .1; done | hexdump -C | grep "ca fe"'
 
-alias time-update='sudo ntpdate pool.ntp.org'
-#alias t='clear; todo.sh -d ~/.todo.cfg'
 if (( $+commands[todo.sh] )); then
 	function t {
 		if [ $# -eq 0 ]; then
@@ -104,6 +103,8 @@ if (( $+commands[todo.sh] )); then
 	}
 	compdef t=todo.sh
 fi
+
+alias mutt='export WRAPMARGIN=$(( $COLUMNS - 80 )) && mutt'
 
 # Media -------------------------------
 alias mplayer='mplayer -msgcolor -nolirc -nojoystick'

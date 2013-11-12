@@ -51,7 +51,7 @@ function set-titles-with-command {
 		unset MATCH
 
 		if [[ "$TERM" == screen* ]]; then
-			set-screen-window-title "$truncated_cmd"
+			# set-screen-window-title "$truncated_cmd"
 		else
 			set-terminal-window-title "$cmd"
 			set-terminal-tab-title "$truncated_cmd"

@@ -49,6 +49,8 @@ path=(
 	/home/josh/.gem/ruby/2.0.0/bin
 )
 
+export CLASSPATH=.:/usr/share/java/junit-4.11.jar
+
 #
 # Less
 #
