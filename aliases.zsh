@@ -147,6 +147,11 @@ function find-exec {
 	find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
 
+# Search through multiple pdf files for string
+function pdfgrep {
+	find $1 -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --ignore-case --with-filename --label="{}" --color '"$2" \;
+}
+
 # Displays user owned processes status.
 function psu {
 	ps -U "${1:-$USER}" -o 'pid,%cpu,%mem,command' "${(@)argv[2,-1]}"
