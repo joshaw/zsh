@@ -171,6 +171,15 @@ shebang() {
 	fi;
 }
 
+# Convert svg to pdf
+function svg2pdf (){
+	rsvg-convert -f pdf $1 >! $1:r.pdf
+}
+
+function zipsww (){
+	zip -r9 MSc7-wainwright-${1:l} $1 -i "*.java"
+}
+
 ############################
 #  Zsh Bookmark movements  #
 ############################
@@ -200,7 +209,3 @@ function _cdb() {
 }
 
 compctl -K _cdb cdb
-
-function zipsww (){
-	zip -r9 MSc7-wainwright-${1:l} $1 -i "*.java"
-}
