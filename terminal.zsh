@@ -6,6 +6,9 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# Stop the system beep
+xset -b
+
 # Return if requirements are not found.
 if [[ "$TERM" == 'dumb' ]]; then
 	return 1
