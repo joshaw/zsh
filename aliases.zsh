@@ -209,3 +209,45 @@ function _cdb() {
 }
 
 compctl -K _cdb cdb
+
+###############
+# HCI PROJECT #
+###############
+
+function HCIrename() {
+	for file in **/*.*.*; do
+		orig=$file
+		new=${file%.*}
+		echo $orig ", " $new
+		mv $orig $new;
+		tr '\342\200\231' "#" < $new | sed "s/###/'/g" > /tmp/tmp; mv -f /tmp/tmp $new
+		tr -cd '\11\12\15\40-\176' < $new > /tmp/tmp; mv -f /tmp/tmp $new
+	done
+}
+
+function HCIextract() {
+	cd ~/Documents/CompSci/
+	echo "\nCopying...\n"
+	mv -f ~/Downloads/HCI*.zip ./hci.zip
+	rm -f ~/Downloads/HCI*.zip
+	rm -rf "HCI Group Project"
+	echo "\nUnzipping...\n"
+	unzip hci.zip
+	cd "HCI Group Project"
+
+	echo "\nFixing...\n"
+	HCIrename
+}
+
+function HCImeld() {
+	cd ~/Downloads/
+	echo "\nExtracting...\n"
+	mv -f HCI*.zip /tmp/hci.zip
+	cd /tmp/
+	unzip hci.zip
+	cd "HCI Group Project"
+	HCIrename
+	cd ..
+	meld "HCI Group Project" "/home/josh/Documents/CompSci/HCI Group Project/"
+	rm -rf "HCI Group Project"
+}
