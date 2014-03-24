@@ -102,6 +102,3 @@ if is-at-least 5.0.0; then
 	}
 	add-zsh-hook preexec set-titles-preexec
 fi
-
-bindkey '^[[D' backward-word
-bindkey '^[[C' forward-word

@@ -63,7 +63,7 @@ prompt_pure_setup() {
 	autoload -Uz vcs_info
 
 	add-zsh-hook precmd prompt_pure_precmd
-#	add-zsh-hook preexec prompt_pure_preexec
+	add-zsh-hook preexec prompt_pure_preexec
 
 	zstyle ':vcs_info:*' enable git
 	zstyle ':vcs_info:git*' formats ' %b'

@@ -8,4 +8,4 @@ function pygmentize_cat {
     pygmentize -g "${arg}" 2> /dev/null || /bin/cat "${arg}"
   done
 }
-command -v pygmentize > /dev/null && alias cat=pygmentize_cat
+command -v pygmentize > /dev/null && alias ccat=pygmentize_cat

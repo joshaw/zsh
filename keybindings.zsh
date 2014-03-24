@@ -5,6 +5,8 @@ bindkey '^[[3~' delete-char
 bindkey '^[[F' end-of-line
 bindkey '^[[H' beginning-of-line
 
+bindkey '^[[D' backward-word
+bindkey '^[[C' forward-word
 
 # Increment the last number, with 0 padding, by +1 or -1.
 _increase_number() {
@@ -15,7 +17,6 @@ _increase_number() {
 zle -N increase-number _increase_number
 bindkey '^Xa' increase-number
 bindkey -s '^Xx' '^[-^Xa'
-
 
 bindkey ' ' magic-space
 
