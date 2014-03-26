@@ -5,19 +5,6 @@ bindkey '^[[3~' delete-char
 bindkey '^[[F' end-of-line
 bindkey '^[[H' beginning-of-line
 
-bindkey '^[[D' backward-word
-bindkey '^[[C' forward-word
-
-# Increment the last number, with 0 padding, by +1 or -1.
-_increase_number() {
-  local -a match mbegin mend
-  [[ $LBUFFER =~ '([0-9]+)[^0-9]*$' ]] &&
-    LBUFFER[mbegin,mend]=$(printf %0${#match[1]}d $((10#$match+${NUMERIC:-1})))
-}
-zle -N increase-number _increase_number
-bindkey '^Xa' increase-number
-bindkey -s '^Xx' '^[-^Xa'
-
 bindkey ' ' magic-space
 
 autoload -Uz narrow-to-region
