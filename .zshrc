@@ -18,3 +18,4 @@ files=(\
 for file in $files; do
 	source ~/.zsh/$file.zsh
 done
+source ~/.fzf.zsh
