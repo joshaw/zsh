@@ -126,9 +126,10 @@ function find-exec {
 }
 
 # Search through multiple pdf files for string
-function pdfgrep {
-	find $1 -name '*.pdf' -exec sh -c 'pdftotext "{}" - | egrep --ignore-case --with-filename --label="{}" --color '"$2" \;
-}
+# function pdfgrep {
+# 	# find . -name '*.pdf' -exec sh -c 'pdftotext "{}" - | egrep --ignore-case --with-filename --label="{}" --color '"$1" \;
+# 	find . -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "$1"' \;
+# }
 
 # Displays user owned processes status.
 function psu {
