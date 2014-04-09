@@ -89,6 +89,7 @@ alias useless='while [ true ]; do head -n 100 /dev/urandom; sleep .1; done | hex
 alias mutt='export WRAPMARGIN=$(( $COLUMNS - 80 )) && mutt'
 
 # Media -------------------------------
+alias mpv='mpv --save-position-on-quit'
 alias mplayer='mplayer -msgcolor -nolirc -nojoystick'
 alias mute-beep='xset -b && sudo rmmod pcspkr'
 alias play-dvd='mplayer -nocache -dvd-device /dev/sr0 -mouse-movements dvdnav://'
