@@ -10,9 +10,7 @@
 # Correct commands.
 setopt CORRECT
 
-#
-# Aliases
-#
+# Aliases {{{
 
 # Define general aliases.
 alias _='sudo'
@@ -22,7 +20,7 @@ alias p='${(z)PAGER}'
 alias type='type -a'
 alias x='exit'
 
-alias ls='ls --color=auto --group-directories-first' # Lists with colour enabled
+alias ls='ls --color=always --group-directories-first' # Lists with colour enabled
 alias l='ls -1A'           # Lists in one column, hidden files.
 alias ll='ls -lh'          # Lists human readable sizes.
 alias lr='ll -R'           # Lists human readable sizes, recursively.
@@ -78,8 +76,9 @@ alias less='less -F'
 alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
 
 # Rebuild dwm, install and restart -------
-alias redwm='cd ~/.scripts/dwm; makepkg -g >> PKGBUILD; makepkg -fi --noconfirm; killall dwm'
+alias redwm='cd ~/.packages/dwm; makepkg -g >> PKGBUILD; makepkg -fi --noconfirm; killall dwm'
 
+# Build instructions
 alias g++='g++ -Wall -o'
 alias junit='java org.junit.runner.JUnitCore'
 
@@ -94,11 +93,8 @@ alias mplayer='mplayer -msgcolor -nolirc -nojoystick'
 alias mute-beep='xset -b && sudo rmmod pcspkr'
 alias play-dvd='mplayer -nocache -dvd-device /dev/sr0 -mouse-movements dvdnav://'
 
-alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'
-
-#
-# Functions
-#
+# }}}
+# Functions {{{
 
 # Makes a directory and changes to it.
 function mkdcd {
@@ -155,9 +151,9 @@ function svg2pdf (){
 	rsvg-convert -f pdf $1 >! $1:r.pdf
 }
 
-############################
-#  Zsh Bookmark movements  #
-############################
+# }}}
+# Zsh Bookmark movements {{{
+
 ZSH_BOOKMARKS="$HOME/.zsh/cdbookmarks"
 
 function cdb_edit() {
@@ -184,3 +180,6 @@ function _cdb() {
 }
 
 compctl -K _cdb cdb
+# }}}
+
+# vim: fdm=marker
