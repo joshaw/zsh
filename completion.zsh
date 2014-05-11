@@ -12,7 +12,7 @@ if [[ "$TERM" == 'dumb' ]]; then
 fi
 
 # Add zsh-completions to $fpath.
-fpath=("$HOME/.zsh/zsh-completion/src/" $fpath)
+fpath=("$HOME/.zsh/completions/src/" $fpath)
 
 # Load and initialize the completion system ignoring insecure directories.
 autoload -Uz compinit && compinit
