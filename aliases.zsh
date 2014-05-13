@@ -151,6 +151,13 @@ function svg2pdf (){
 	rsvg-convert -f pdf $1 >! $1:r.pdf
 }
 
+# Send link to pocket
+function pocket() {
+	for ARG in "$@"; do
+		echo $ARG | /usr/bin/mutt -s link add@getpocket.com
+	done
+}
+
 # }}}
 # Zsh Bookmark movements {{{
 
