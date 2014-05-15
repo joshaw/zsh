@@ -85,8 +85,6 @@ alias junit='java org.junit.runner.JUnitCore'
 # Pointess command to look wierd and cool
 alias useless='while [ true ]; do head -n 100 /dev/urandom; sleep .1; done | hexdump -C | grep "ca fe"'
 
-alias mutt='export WRAPMARGIN=$(( $COLUMNS - 80 )) && mutt'
-
 # Media -------------------------------
 alias mpv='mpv --save-position-on-quit'
 alias mplayer='mplayer -msgcolor -nolirc -nojoystick'
