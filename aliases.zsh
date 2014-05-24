@@ -156,6 +156,12 @@ function pocket() {
 	done
 }
 
+# Open google search in web browser
+function google () {
+	st="$@"
+	open "http://www.google.com/search?q=${st}"
+}
+
 # }}}
 # Zsh Bookmark movements {{{
 
