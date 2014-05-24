@@ -159,7 +159,7 @@ function pocket() {
 # Open google search in web browser
 function google () {
 	st="$@"
-	open "http://www.google.com/search?q=${st}"
+	open -fw "http://www.google.com/search?q=${st}"
 }
 
 # }}}
