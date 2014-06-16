@@ -25,6 +25,8 @@ alias g='git'
 # Branch (b)
 alias gb='git branch'
 alias gbc='git checkout -b'
+alias gbcm='git checkout master'
+alias gbcp='git checkout gh-pages'
 alias gbl='git branch -v'
 alias gbL='git branch -av'
 alias gbx='git branch -d'
