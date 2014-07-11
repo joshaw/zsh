@@ -38,13 +38,17 @@ prompt_pure_cmd_exec_time() {
 prompt_pure_preexec() {
 	cmd_timestamp=$(date +%s)
 
-	# shows the current dir and executed command in the title when a process is active
-	printf "\e]0;$PWD:t: $2\a"
+	if [[ "$TERM" != "linux" ]]; then
+		# shows the current dir and executed command in the title when a process is active
+		printf "\e]0;$PWD:t: $2\a"
+	fi
 }
 
 prompt_pure_precmd() {
-	# shows the full path in the title
-	print -Pn '\e]0;%~\a'
+	if [[ "$TERM" != "linux" ]]; then
+		# shows the full path in the title
+		print -Pn '\e]0;%~\a'
+	fi
 
 	# git info
 	vcs_info

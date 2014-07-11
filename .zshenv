@@ -50,7 +50,7 @@ path=(
 	/home/josh/.gem/ruby/2.1.0/bin
 )
 
-export CLASSPATH=.:/usr/share/java/junit4.jar
+export CLASSPATH=.:/usr/share/java/junit.jar:/usr/share/imagej/ij.jar
 
 #
 # Less
