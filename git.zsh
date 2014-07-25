@@ -82,6 +82,10 @@ alias ggL='git grep --files-without-matches'
 alias ggv='git grep --invert-match'
 alias ggw='git grep --word-regexp'
 
+# GUI (u)
+alias git-gui-local='~/Bin/git-gui/git-gui.sh'
+alias gu='git-gui-local'
+
 # Index (i)
 alias gia='git add'
 alias giA='git add --patch'
