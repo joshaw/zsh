@@ -41,6 +41,7 @@ typeset -gU cdpath fpath mailpath path
 
 # Set the list of directories that Zsh searches for programs.
 path=(
+	~/.local/bin/
 	/usr/{bin,sbin}
 	/bin
 	/sbin
@@ -50,7 +51,8 @@ path=(
 	/home/josh/.gem/ruby/2.1.0/bin
 )
 
-export CLASSPATH=.:/usr/share/java/junit.jar:/usr/share/imagej/ij.jar
+export CLASSPATH=.:/usr/share/java/junit.jar:/usr/share/imagej/ij.jar:${HOME}/Bin/ImageJ/ij.jar
+# export CLASSPATH="$CLASSPATH:/home/students/jaw097/Bin/ImageJ/ij.jar:/usr/share/java/junit4.jar"
 
 #
 # Less
