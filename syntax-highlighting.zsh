@@ -1,5 +1,5 @@
 # Source module files.
-source "/home/josh/.zsh/syntax/zsh-syntax-highlighting.zsh"
+source "${HOME}/.zsh/syntax/zsh-syntax-highlighting.zsh"
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 

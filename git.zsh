@@ -82,6 +82,10 @@ alias ggL='git grep --files-without-matches'
 alias ggv='git grep --invert-match'
 alias ggw='git grep --word-regexp'
 
+# GUI (u)
+alias git-gui-local='~/Bin/git-gui/git-gui.sh'
+alias gu='git-gui-local'
+
 # Index (i)
 alias gia='git add'
 alias giA='git add --patch'
@@ -159,8 +163,14 @@ alias gSu='git submodule foreach git pull origin master'
 alias gSx='git-submodule-remove'
 
 # Working Copy (w)
-alias gws='git status --ignore-submodules --short'
-alias gwS='git status --ignore-submodules'
+gitversion=$(git --version | cut -d \  -f 3 | sed 's/\.//g')
+if [[ $gitversion -lt 180 ]] then
+	alias gws='git status --short'
+	alias gwS='git status '
+else
+	alias gws='git status --ignore-submodules --short'
+	alias gwS='git status --ignore-submodules'
+fi
 alias gwd='git diff --no-ext-diff'
 alias gwD='git diff --no-ext-diff --word-diff'
 alias gwr='git reset --soft'

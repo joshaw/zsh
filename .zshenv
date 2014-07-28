@@ -41,6 +41,7 @@ typeset -gU cdpath fpath mailpath path
 
 # Set the list of directories that Zsh searches for programs.
 path=(
+	~/.local/bin/
 	/usr/{bin,sbin}
 	/bin
 	/sbin
@@ -50,7 +51,8 @@ path=(
 	/home/josh/.gem/ruby/2.1.0/bin
 )
 
-export CLASSPATH=.:/usr/share/java/junit.jar:/usr/share/imagej/ij.jar
+export CLASSPATH=.:/usr/share/java/junit.jar:/usr/share/imagej/ij.jar:${HOME}/Bin/ImageJ/ij.jar
+# export CLASSPATH="$CLASSPATH:/home/students/jaw097/Bin/ImageJ/ij.jar:/usr/share/java/junit4.jar"
 
 #
 # Less
@@ -59,7 +61,7 @@ export CLASSPATH=.:/usr/share/java/junit.jar:/usr/share/imagej/ij.jar
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
-export LESS='-i -M -R -w -z-4 -~'
+export LESS='-i -M -R -w -z-4 -~ -X -F'
 
 # Set the Less input preprocessor.
 if (( $+commands[lesspipe.sh] )); then
