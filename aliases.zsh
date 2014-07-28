@@ -34,6 +34,8 @@ alias lu='lt -u'           # Lists sorted by date, most recent last, shows acces
 
 alias bat="upower -d | grep -E --color=none 'state|percentage' | sed 's/ \+/ /g' | column -s: -t"
 
+alias chromeos="sudo cgpt add -i 6 -P 0 -S 0 /dev/mmcblk0"
+
 function chpwd() {
 	ll
 }
