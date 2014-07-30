@@ -20,6 +20,11 @@ alias p='${(z)PAGER}'
 alias type='type -a'
 alias x='exit'
 
+# Editor
+alias e='vim'
+alias ee='gvim'
+alias vimrc='vim -c ":e \$MYVIMRC"'
+
 alias ls='ls --color=always --group-directories-first' # Lists with colour enabled
 alias l='ls -1A'           # Lists in one column, hidden files.
 alias ll='ls -lh'          # Lists human readable sizes.
