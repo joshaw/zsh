@@ -38,9 +38,11 @@ alias lc='lt -c'           # Lists sorted by date, most recent last, shows chang
 alias lu='lt -u'           # Lists sorted by date, most recent last, shows access time.
 
 alias bat="upower -d | grep -E --color=none 'state|percentage' | sed 's/ \+/ /g' | column -s: -t"
+alias imagej="cd -q ~/Bin/ImageJ/ && ./run; cd -q -"
 
 function chpwd() {
-	ll
+	emulate -L zsh
+	la -al
 }
 
 # Directories
