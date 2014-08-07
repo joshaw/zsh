@@ -42,7 +42,7 @@ alias imagej="cd -q ~/Bin/ImageJ/ && ./run; cd -q -"
 
 function chpwd() {
 	emulate -L zsh
-	la -al
+	ls -Al
 }
 
 # Directories
