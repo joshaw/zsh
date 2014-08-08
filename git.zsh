@@ -99,7 +99,8 @@ alias giX='git rm -rf --cached'
 
 # Log (l)
 alias gl='git log --topo-order --pretty=format:${_git_log_medium_format}'
-alias gll='git log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
+# alias gll='git log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
+alias gll="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %s %C(white)- %an%C(reset)%C(yellow)%d%C(reset)' --all"
 alias gls='git log --topo-order --stat --pretty=format:${_git_log_medium_format}'
 alias gld='git log --topo-order --stat --patch --full-diff --pretty=format:${_git_log_medium_format}'
 alias glo='git log --topo-order --pretty=format:${_git_log_oneline_format}'
