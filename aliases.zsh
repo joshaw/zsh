@@ -20,6 +20,11 @@ alias p='${(z)PAGER}'
 alias type='type -a'
 alias x='exit'
 
+# Editor
+alias e='vim'
+alias ee='gvim'
+alias vimrc='vim -c ":e \$MYVIMRC"'
+
 alias ls='ls --color=always --group-directories-first' # Lists with colour enabled
 alias l='ls -1A'           # Lists in one column, hidden files.
 alias ll='ls -lh'          # Lists human readable sizes.
@@ -33,11 +38,13 @@ alias lc='lt -c'           # Lists sorted by date, most recent last, shows chang
 alias lu='lt -u'           # Lists sorted by date, most recent last, shows access time.
 
 alias bat="upower -d | grep -E --color=none 'state|percentage' | sed 's/ \+/ /g' | column -s: -t"
+alias imagej="cd -q ~/Bin/ImageJ/ && ./run; cd -q -"
 
 alias chromeos="sudo cgpt add -i 6 -P 0 -S 0 /dev/mmcblk0"
 
 function chpwd() {
-	ll
+	emulate -L zsh
+	ls -Al
 }
 
 # Directories
@@ -206,6 +213,24 @@ function _cdb() {
 }
 
 compctl -K _cdb cdb
+# }}}
+# Ranger Automatic cd {{{
+# Automatically change the directory in bash after closing ranger
+#
+# This is a bash function for .bashrc to automatically change the directory to
+# the last visited one after ranger quits.
+# To undo the effect of this function, you can type "cd -" to return to the
+# original directory.
+
+function ranger-cd {
+    tempfile='/tmp/chosendir'
+    ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+    test -f "$tempfile" &&
+    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
+        cd -- "$(cat "$tempfile")"
+    fi
+    rm -f -- "$tempfile" > /dev/null
+}
 # }}}
 
 # vim: fdm=marker
