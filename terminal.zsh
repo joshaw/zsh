@@ -14,6 +14,26 @@ if [[ "$TERM" == 'dumb' ]]; then
 	return 1
 fi
 
+if [[ "$TERM" = "linux" ]]; then
+	echo -en "\e]P0272822" #black
+	echo -en "\e]P8F2F2F2" #darkgrey
+	echo -en "\e]P1dc322f" #darkred
+	echo -en "\e]P9ff3a36" #red
+	echo -en "\e]P2a6e22e" #darkgreen
+	echo -en "\e]PAc6f666" #green
+	echo -en "\e]P3aa5500" #darkyellow
+	echo -en "\e]PBffff55" #yellow
+	echo -en "\e]P41e6fa8" #darkblue
+	echo -en "\e]PC77a6d9" #blue
+	echo -en "\e]PDeb2657" #magenta
+	echo -en "\e]P5e86988" #darkmagenta
+	echo -en "\e]PE66d9ef" #cyan
+	echo -en "\e]P69cd9e5" #dark cyan
+	echo -en "\e]P7aaaaaa" #lightgrey
+	echo -en "\e]PFf8f8f2" #white
+	clear
+fi
+
 # Sets the terminal window title.
 function set-terminal-window-title {
 	if [[ "$TERM" == ((x|a|ml|dt|E)term*|(u|)rxvt*) ]]; then
