@@ -1,7 +1,7 @@
 # Source module files.
 source "${HOME}/.zsh/syntax/zsh-syntax-highlighting.zsh"
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 
 function pygmentize_cat {
   for arg in "$@"; do
