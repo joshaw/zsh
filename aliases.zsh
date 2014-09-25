@@ -37,6 +37,8 @@ alias lt='ll -tr'          # Lists sorted by date, most recent last.
 alias lc='lt -c'           # Lists sorted by date, most recent last, shows change time.
 alias lu='lt -u'           # Lists sorted by date, most recent last, shows access time.
 
+alias cp='vcp -tv'
+
 alias bat="upower -d | grep -E --color=none 'state|percentage' | sed 's/ \+/ /g' | column -s: -t"
 alias imagej="cd -q ~/Bin/ImageJ/ && ./run; cd -q -"
 
@@ -44,7 +46,7 @@ alias chromeos="sudo cgpt add -i 6 -P 0 -S 0 /dev/mmcblk0"
 
 function chpwd() {
 	emulate -L zsh
-	ls -Al
+	ls -lh
 }
 
 # Directories
