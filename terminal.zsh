@@ -7,7 +7,7 @@
 #
 
 # Stop the system beep
-xset -b
+xset -b 2> /dev/null
 
 # Return if requirements are not found.
 if [[ "$TERM" == 'dumb' ]]; then
