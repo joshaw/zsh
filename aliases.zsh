@@ -100,6 +100,7 @@ alias useless='while [ true ]; do head -n 100 /dev/urandom; sleep .1; done | hex
 
 # Media -------------------------------
 alias mpv='mpv --save-position-on-quit'
+alias mpa='mpv --no-video'
 alias mplayer='mplayer -msgcolor -nolirc -nojoystick'
 alias mute-beep='xset -b && sudo rmmod pcspkr'
 alias play-dvd='mplayer -nocache -dvd-device /dev/sr0 -mouse-movements dvdnav://'
