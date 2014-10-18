@@ -1,11 +1,15 @@
 # Source module files.
 source "${HOME}/.zsh/syntax/zsh-syntax-highlighting.zsh"
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
-
-function pygmentize_cat {
-  for arg in "$@"; do
-    pygmentize -g "${arg}" 2> /dev/null || /bin/cat "${arg}"
-  done
+is_cygwin() {
+	local uname
+	# Check we're running under cygwin
+	uname=`uname -s`
+	[[ $uname[0,6] == 'CYGWIN' ]]
 }
-command -v pygmentize > /dev/null && alias ccat=pygmentize_cat
+
+if is_cygwin; then
+	ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+else
+	ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
+fi
