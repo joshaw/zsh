@@ -2,10 +2,6 @@ if [[ $TERM == "xterm" ]]; then
 	export TERM=xterm-256color
 fi
 
-# if (( $+commands[fortune] )); then
-# 	fortune
-# fi
-
 files=(\
 	'prompt'\
 	'completion'\
