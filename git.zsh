@@ -85,7 +85,7 @@ alias ggw='git grep --word-regexp'
 
 # GUI (u)
 alias git-gui-local='~/Bin/git-gui/git-gui.sh'
-alias git-gui-local='/cygdrive/c/Program\ Files\ \(x86\)/Git/bin/wish.exe "C:\\Program Files (x86)\\Git\\libexec\\git-core\\git-gui"'
+alias git-gui-local='/cygdrive/c/progs/Git/bin/wish.exe "C:\\progs\\Git\\libexec\\git-core\\git-gui"'
 alias gu='git-gui-local'
 
 # Index (i)
