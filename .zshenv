@@ -47,6 +47,7 @@ path=(
 	/sbin
 	/usr/local/{bin,sbin}
 	~/Bin
+	~/Tools
 	/home/josh/.gem/ruby/2.0.0/bin
 	/home/josh/.gem/ruby/2.1.0/bin
 )
