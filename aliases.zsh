@@ -37,7 +37,9 @@ alias lt='ll -tr'          # Lists sorted by date, most recent last.
 alias lc='lt -c'           # Lists sorted by date, most recent last, shows change time.
 alias lu='lt -u'           # Lists sorted by date, most recent last, shows access time.
 
-alias cp='vcp -tv'
+if (( $+commands[vcp] )); then
+	alias cp='vcp -tv'
+fi
 
 alias bat="upower -d | grep -E --color=none 'state|percentage' | sed 's/ \+/ /g' | column -s: -t"
 alias imagej="cd -q ~/Bin/ImageJ/ && ./run; cd -q -"
@@ -77,9 +79,6 @@ alias suspend='sudo systemctl suspend'
 # Lists the ten most used commands.
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
 
-# Serves a directory via HTTP.
-alias http-serve='python -m SimpleHTTPServer'
-
 alias reload!='. ~/.zshrc'
 
 #alias ls='ls --color=auto'
@@ -111,18 +110,8 @@ alias vimp='vim ~/.config/.info.gpg'
 # Functions {{{
 
 # Makes a directory and changes to it.
-function mkdcd {
+function mcd {
 	[[ -n "$1" ]] && mkdir -p "$1" && builtin cd "$1"
-}
-
-# Pushes an entry onto the directory stack and lists its contents.
-function pushdls {
-	builtin pushd "$argv[-1]" && ls "${(@)argv[1,-2]}"
-}
-
-# Pops an entry off the directory stack and lists its contents.
-function popdls {
-	builtin popd "$argv[-1]" && ls "${(@)argv[1,-2]}"
 }
 
 # Prints columns 1 2 3 ... n.
