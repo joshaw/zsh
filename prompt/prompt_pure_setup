@@ -76,7 +76,10 @@ prompt_pure_setup() {
 	[[ "$SSH_CONNECTION" != '' ]] && prompt_pure_username='%n@%m '
 
 	# prompt turns red if the previous command didn't exit with 0
-	PROMPT='%(?.%F{green}.%F{red})❯%f '
+	# number of >'s indicates the number of embeded shells
+	shell_level=$(printf '>%.0s' $(seq 1 $SHLVL))
+	PROMPT="%(?.%F{green}.%F{red})$shell_level%f "
+
 	RPROMPT='%*'
 	SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 	#zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
