@@ -1,20 +1,15 @@
 #
 # Defines environment variables.
 #
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
 
 #
 # Browser
 #
-
 export BROWSER='open'
 
 #
 # Editors
 #
-
 export EDITOR='vim'
 export VISUAL='gvim'
 export PAGER='less'
@@ -22,7 +17,6 @@ export PAGER='less'
 #
 # Language
 #
-
 if [[ -z "$LANG" ]]; then
 	export LANG='en_GB.UTF-8'
 fi
@@ -30,14 +24,7 @@ fi
 #
 # Paths
 #
-
 typeset -gU cdpath fpath mailpath path
-
-# Set the the list of directories that cd searches.
- cdpath=(
-	$cdpath
-	~/Documents/CompSci/
- )
 
 # Set the list of directories that Zsh searches for programs.
 path=(
