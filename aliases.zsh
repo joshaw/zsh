@@ -113,20 +113,26 @@ alias vimp='vim ~/.config/.info.gpg'
 # }}}
 # Functions {{{
 
+# mcd {{{
 # Makes a directory and changes to it.
 function mcd {
 	[[ -n "$1" ]] && mkdir -p "$1" && builtin cd "$1"
 }
+# }}}
 
+# slit {{{
 # Prints columns 1 2 3 ... n.
 function slit {
 	awk "{ print ${(j:,:):-\$${^@}} }"
 }
+# }}}
 
+# find-exec {{{
 # Finds files and executes a command on them.
 function find-exec {
 	find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
+# }}}
 
 # Search through multiple pdf files for string
 # function pdfgrep {
@@ -134,16 +140,13 @@ function find-exec {
 # 	find . -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "$1"' \;
 # }
 
-# Displays user owned processes status.
-function psu {
-	ps -U "${1:-$USER}" -o 'pid,%cpu,%mem,command' "${(@)argv[2,-1]}"
-}
-
-# Pacman
+# paclist {{{
 paclist() {
 	sudo pacman -Qei $(pacman -Qu|cut -d" " -f 1)|awk ' BEGIN {FS=":"}/^Name/{printf("\033[1;36m%s\033[1;37m", $2)}/^Description/{print $2}'
 }
+# }}}
 
+# shebang {{{
 # Create a new script, make executable and add shebang
 shebang() {
 	if i=$(which $1); then
@@ -152,25 +155,33 @@ shebang() {
 		echo "'which' could not find $1, is it in your \$PATH?";
 	fi;
 }
+# }}}
 
+# svg2pdf {{{
 # Convert svg to pdf
 function svg2pdf (){
 	rsvg-convert -f pdf $1 >! $1:r.pdf
 }
+# }}}
 
+# pocket {{{
 # Send link to pocket
 function pocket() {
 	for ARG in "$@"; do
 		echo $ARG | /usr/bin/mutt -s link add@getpocket.com
 	done
 }
+# }}}
 
+# google {{{
 # Open google search in web browser
 function google () {
 	st="$@"
 	open -fw "http://www.google.com/search?q=${st}"
 }
+# }}}
 
+# enc/dec {{{
 # Encrypt and decrypt folders using tar and openssl
 function enc () {
 	tar --create --file - --posix --gzip -- $1 | openssl enc -e -aes256 -out $1.enc
@@ -179,6 +190,52 @@ function enc () {
 function dec () {
 	openssl enc -d -aes256 -in $1 | tar --extract --file - --gzip
 }
+# }}}
+
+# Backwards change directory {{{
+bd () {
+  (($#<1)) && {
+    print -- "usage: $0 <name-of-any-parent-directory>"
+    return 1
+  } >&2
+  # Get parents (in reverse order)
+  local parents
+  local num_tmp="${PWD//[^\/]}"
+  local num=${#num_tmp}
+  local i
+  for i in {$((num+1))..2}
+  do
+    parents=($parents "`echo $PWD | cut -d'/' -f$i`")
+  done
+  parents=($parents "/")
+  # Build dest and 'cd' to it
+  local dest="./"
+  local parent
+  foreach parent (${parents})
+  do
+    if [[ $1 == $parent ]]
+    then
+      cd $dest
+      return 0
+    fi
+    dest+="../"
+  done
+  print -- "bd: Error: No parent directory named '$1'"
+  return 1
+}
+_bd () {
+  # Get parents (in reverse order)
+  local num_tmp="${PWD//[^\/]}"
+  local num=${#num_tmp}
+  local i
+  for i in {$((num+1))..2}
+  do
+    reply=($reply "`echo $PWD | cut -d'/' -f$i`")
+  done
+  reply=($reply "/")
+}
+compctl -V directories -K _bd bd
+# }}}
 
 # }}}
 # Zsh Bookmark movements {{{
