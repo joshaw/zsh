@@ -10,6 +10,7 @@ files=(\
 	'environment.zsh'\
 	'aliases.zsh'\
 	'history.zsh'\
+	'terminal.zsh'\
 	'syntax-highlighting.zsh'\
 	'keybindings.zsh'\
 	)
