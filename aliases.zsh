@@ -41,6 +41,10 @@ if (( $+commands[vcp] )); then
 	alias cp='vcp -tv'
 fi
 
+if ! hash clear 2> /dev/null; then
+	alias clear='printf "\033c"'
+fi
+
 alias bat="upower -d | grep -E --color=none 'state|percentage' | sed 's/ \+/ /g' | column -s: -t"
 alias imagej="cd -q ~/Bin/ImageJ/ && ./run; cd -q -"
 
