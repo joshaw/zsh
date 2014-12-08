@@ -34,13 +34,6 @@ unsetopt HUP              # Don't kill jobs on shell exit.
 unsetopt CHECK_JOBS       # Don't report on jobs when shell exit.
 
 #
-# Grep
-#
-
-export GREP_COLOR='37;45'
-export GREP_OPTIONS='--color=auto'
-
-#
 # Termcap
 #
 
