@@ -11,11 +11,6 @@ if (( ! $+commands[git] )); then
 fi
 
 #
-# Settings
-#
-#
-
-#
 # Aliases
 #
 
@@ -168,14 +163,8 @@ alias gSu='git submodule foreach git pull origin master'
 alias gSx='git-submodule-remove'
 
 # Working Copy (w)
-gitversion=$(git --version | cut -d \  -f 3 | sed 's/\.//g')
-if [[ $gitversion -lt 180 ]] then
-	alias gws='git status --short'
-	alias gwS='git status '
-else
-	alias gws='git status --ignore-submodules --short'
-	alias gwS='git status --ignore-submodules'
-fi
+alias gws='git status --ignore-submodules --short'
+alias gwS='git status --ignore-submodules'
 alias gwd='git diff --no-ext-diff'
 alias gwD='git diff --no-ext-diff --word-diff'
 alias gwr='git reset --soft'

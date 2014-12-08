@@ -3,19 +3,22 @@ if [[ $TERM == "xterm" ]]; then
 fi
 
 files=(\
-	'prompt'\
-	'completion'\
-	'git'\
-	'spectrum'\
-	'terminal'\
-	'environment'\
-	'aliases'\
-	'history'\
-	'syntax-highlighting'\
-	'keybindings'\
+	'prompt.zsh'\
+	'completion.zsh'\
+	'git.zsh'\
+	'spectrum.zsh'\
+	'environment.zsh'\
+	'aliases.zsh'\
+	'history.zsh'\
+	'terminal.zsh'\
+	'syntax-highlighting.zsh'\
+	'keybindings.zsh'\
 	)
 
 for file in $files; do
-	source ~/.zsh/$file.zsh
+	source ~/.zsh/$file
 done
-# source ~/.fzf.zsh
+
+#	ts=$(date +%s%N)
+#	tt=$((($(date +%s%N) - $ts)/1000000))
+#	echo "$file : $tt"

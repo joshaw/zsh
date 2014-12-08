@@ -2,9 +2,8 @@
 source "${HOME}/.zsh/syntax/zsh-syntax-highlighting.zsh"
 
 is_cygwin() {
-	local uname
 	# Check we're running under cygwin
-	uname=`uname -s`
+	local uname=`uname -s`
 	[[ $uname[0,6] == 'CYGWIN' ]]
 }
 
