@@ -134,11 +134,21 @@ function find-exec {
 }
 # }}}
 
+# pdfgrep {{{
 # Search through multiple pdf files for string
-# function pdfgrep {
-# 	# find . -name '*.pdf' -exec sh -c 'pdftotext "{}" - | egrep --ignore-case --with-filename --label="{}" --color '"$1" \;
-# 	find . -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "$1"' \;
-# }
+function pdfgrep {
+	if hash pdfgrep 2> /dev/null; then
+		pdfgrep "$@"
+		exit $?
+	fi
+	if ! hash pdftotext 2> /dev/null; then
+		pdftotext=/cygdrive/c/progs/Git/bin/pdftotext.exe
+	else
+		pdftotext=$(which pdftotext)
+	fi
+	find . -name '*.pdf' -exec sh -c "$pdftotext \"{}\" - | grep --with-filename --label=\"{}\" --color \"$1\"" \;
+}
+# }}}
 
 # paclist {{{
 paclist() {

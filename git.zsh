@@ -163,7 +163,8 @@ alias gSu='git submodule foreach git pull origin master'
 alias gSx='git-submodule-remove'
 
 # Working Copy (w)
-alias gws='git status --ignore-submodules --short'
+#alias gws='git status --ignore-submodules --short'
+function gws() { git status --ignore-submodules --short || amr "$@"; }
 alias gwS='git status --ignore-submodules'
 alias gwd='git diff --no-ext-diff'
 alias gwD='git diff --no-ext-diff --word-diff'
@@ -173,3 +174,4 @@ alias gwc='git clean -n'
 alias gwC='git clean -f'
 alias gwx='git rm -r'
 alias gwX='git rm -rf'
+
