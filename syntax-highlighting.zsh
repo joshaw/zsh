@@ -1,4 +1,5 @@
 # Source module files.
+zsh_timing_function ${(%):-%N}
 source "${HOME}/.zsh/syntax/zsh-syntax-highlighting.zsh"
 
 is_cygwin() {

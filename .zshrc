@@ -1,6 +1,11 @@
+zsh_timing_function ${(%):-%N}
+
 if [[ $TERM == "xterm" ]]; then
 	export TERM=xterm-256color
 fi
+
+path+="${HOME}/Bin"
+path+="${HOME}/Tools"
 
 files=(\
 	'prompt.zsh'\
@@ -13,6 +18,7 @@ files=(\
 	'terminal.zsh'\
 	'syntax-highlighting.zsh'\
 	'keybindings.zsh'\
+	'empty.zsh'
 	)
 
 for file in $files; do

@@ -5,6 +5,7 @@
 #   Robby Russell <robby@planetargon.com>
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
+zsh_timing_function ${(%):-%N}
 
 #
 # Variables

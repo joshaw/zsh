@@ -6,6 +6,7 @@
 #   Suraj N. Kurapati <sunaku@gmail.com>
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
+zsh_timing_function ${(%):-%N}
 
 # Correct commands.
 setopt CORRECT

@@ -1,6 +1,17 @@
 #
 # Defines environment variables.
 #
+export ZSH_TIMING_FIRST=$(date +%s%N)
+let ZSH_TIMING_TMP1=$ZSH_TIMING_FIRST
+function zsh_timing_function() {
+	export ZSH_TIMING_TMP2=$(date +%s%N)
+	local ZSH_TIMING_DIFF=$(((ZSH_TIMING_TMP2 - ZSH_TIMING_TMP1)/1000000))
+	echo $ZSH_TIMING_DIFF
+	export ZSH_TIMING_TMP1=$(date +%s%N)
+	local file=$1
+	echo -n "Sourced $file : "
+}
+zsh_timing_function ${(%):-%N}
 
 #
 # Browser
@@ -25,19 +36,6 @@ fi
 # Paths
 #
 typeset -gU cdpath fpath mailpath path
-
-# Set the list of directories that Zsh searches for programs.
-path=(
-	~/.local/bin/
-	/usr/{bin,sbin}
-	/bin
-	/sbin
-	/usr/local/{bin,sbin}
-	~/Bin
-	~/Tools
-	/home/josh/.gem/ruby/2.0.0/bin
-	/home/josh/.gem/ruby/2.1.0/bin
-)
 
 export CLASSPATH=.:/usr/share/java/junit.jar:/usr/share/imagej/ij.jar:${HOME}/Bin/ImageJ/ij.jar
 # export CLASSPATH="$CLASSPATH:/home/students/jaw097/Bin/ImageJ/ij.jar:/usr/share/java/junit4.jar"

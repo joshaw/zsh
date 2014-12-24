@@ -1,3 +1,5 @@
+zsh_timing_function ${(%):-%N}
+
 bindkey -e
 bindkey ';5D' backward-word
 bindkey ';5C' forward-word

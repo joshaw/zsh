@@ -1,5 +1,6 @@
 #
 # Sets general shell options and defines environment variables.
+zsh_timing_function ${(%):-%N}
 
 #
 # Smart URLs
