@@ -6,7 +6,6 @@
 #   Suraj N. Kurapati <sunaku@gmail.com>
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
-zsh_timing_function ${(%):-%N}
 
 # Correct commands.
 setopt CORRECT
@@ -297,4 +296,5 @@ function ranger-cd {
 }
 # }}}
 
+zsh_timing_function ${(%):-%N}
 # vim: fdm=marker

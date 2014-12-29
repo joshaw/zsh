@@ -1,4 +1,3 @@
-zsh_timing_function ${(%):-%N}
 
 bindkey -e
 bindkey ';5D' backward-word
@@ -26,3 +25,5 @@ bindkey "^S" history-incremental-pattern-search-forward
 
 bindkey '[A' history-substring-search-up
 bindkey '[B' history-substring-search-down
+
+zsh_timing_function ${(%):-%N}

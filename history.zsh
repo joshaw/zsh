@@ -5,7 +5,6 @@
 #   Robby Russell <robby@planetargon.com>
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
-zsh_timing_function ${(%):-%N}
 
 #
 # Variables
@@ -34,3 +33,5 @@ setopt HIST_BEEP                 # Beep when accessing non-existent history.
 
 # Source module files.
 source "${HOME}/.zsh/history-substring-search/zsh-history-substring-search.zsh"
+
+zsh_timing_function ${(%):-%N}

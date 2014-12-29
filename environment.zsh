@@ -1,6 +1,5 @@
 #
 # Sets general shell options and defines environment variables.
-zsh_timing_function ${(%):-%N}
 
 #
 # Smart URLs
@@ -59,3 +58,5 @@ unsetopt CLOBBER            # Do not overwrite existing files with > and >>.
 #
 
 export WRAPMARGIN=$(( $COLUMNS - 80 ))
+
+zsh_timing_function ${(%):-%N}

@@ -1,5 +1,4 @@
 # Source module files.
-zsh_timing_function ${(%):-%N}
 source "${HOME}/.zsh/syntax/zsh-syntax-highlighting.zsh"
 
 is_cygwin() {
@@ -13,3 +12,5 @@ if is_cygwin; then
 else
 	ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 fi
+
+zsh_timing_function ${(%):-%N}

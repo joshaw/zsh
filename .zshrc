@@ -1,4 +1,3 @@
-zsh_timing_function ${(%):-%N}
 
 if [[ $TERM == "xterm" ]]; then
 	export TERM=xterm-256color
@@ -18,13 +17,17 @@ files=(\
 	'terminal.zsh'\
 	'syntax-highlighting.zsh'\
 	'keybindings.zsh'\
-	'empty.zsh'
 	)
 
 for file in $files; do
-	source ~/.zsh/$file
+	if [[ -f ~/.zsh/$file ]]; then
+		source ~/.zsh/$file
+	fi
 done
+wait
 
 #	ts=$(date +%s%N)
 #	tt=$((($(date +%s%N) - $ts)/1000000))
 #	echo "$file : $tt"
+
+zsh_timing_function ${(%):-%N}

@@ -1,17 +1,16 @@
 #
 # Defines environment variables.
 #
-export ZSH_TIMING_FIRST=$(date +%s%N)
-let ZSH_TIMING_TMP1=$ZSH_TIMING_FIRST
+export ZSH_TIMING_TIC=$(date +%s%N)
+local ZSH_TIMING_TEMP1=$ZSH_TIMING_TIC
 function zsh_timing_function() {
-	export ZSH_TIMING_TMP2=$(date +%s%N)
-	local ZSH_TIMING_DIFF=$(((ZSH_TIMING_TMP2 - ZSH_TIMING_TMP1)/1000000))
-	echo $ZSH_TIMING_DIFF
-	export ZSH_TIMING_TMP1=$(date +%s%N)
+	local ZSH_TIMING_TEMP2=$(date +%s%N)
+	local ZSH_TIMING_DIFF=$(((ZSH_TIMING_TEMP2 - ZSH_TIMING_TEMP1) / 1000000 ))
 	local file=$1
-	echo -n "Sourced $file : "
+	echo -n "Sourced $file"
+	echo " : $ZSH_TIMING_DIFF"
+	export ZSH_TIMING_TEMP1=$(date +%s%N)
 }
-zsh_timing_function ${(%):-%N}
 
 #
 # Browser
@@ -67,3 +66,5 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 if [[ ! -d "$TMPPREFIX" ]]; then
 	mkdir -p "$TMPPREFIX"
 fi
+
+zsh_timing_function ${(%):-%N}

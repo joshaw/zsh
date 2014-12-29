@@ -1,7 +1,6 @@
 #
 # Sets terminal window and tab titles.
 #
-zsh_timing_function ${(%):-%N}
 
 # Stop the system beep
 xset -b 2> /dev/null
@@ -140,3 +139,5 @@ if is-at-least 5.0.0; then
 	}
 	add-zsh-hook preexec set-titles-preexec
 fi
+
+zsh_timing_function ${(%):-%N}

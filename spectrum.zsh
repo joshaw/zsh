@@ -5,7 +5,6 @@
 #   P.C. Shyamshankar <sykora@lucentbeing.com>
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
-zsh_timing_function ${(%):-%N}
 
 # Return if requirements are not found.
 if [[ "$TERM" == 'dumb' ]]; then
@@ -68,3 +67,5 @@ for color in {0..255}; do
   BG[$color]="\e[48;5;${color}m"
 done
 unset color{s,} index
+
+zsh_timing_function ${(%):-%N}
