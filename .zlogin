@@ -11,4 +11,5 @@
 	fi
 } &!
 
+export ZSH_SHLVL_INIT=0
 zsh_timing_function ${(%):-%N}

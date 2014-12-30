@@ -71,7 +71,8 @@ prompt_setup() {
 
 	# prompt turns red if the previous command didn't exit with 0
 	# number of >'s indicates the number of embeded shells
-	shell_level=$(printf '>%.0s' $(seq 1 $SHLVL))
+	local THIS_SHLVL=$((SHLVL-ZSH_SHLVL_INIT))
+	shell_level=$(printf '>%.0s' $(seq 1 $THIS_SHLVL))
 	PROMPT="%(?.%F{green}.%F{red})$shell_level%f "
 
 	RPROMPT='%*'
