@@ -28,6 +28,7 @@ alias vimrc='vim -c ":e \$MYVIMRC"'
 alias ls='ls --color=always --group-directories-first' # Lists with colour enabled
 alias l='ls -1A'           # Lists in one column, hidden files.
 alias ll='ls -lh'          # Lists human readable sizes.
+alias lll='ls -Alh --sort=size . | tr -s " " | cut -d " " -f 5,9'
 alias lr='ll -R'           # Lists human readable sizes, recursively.
 alias la='ll -A'           # Lists human readable sizes, hidden files.
 alias lm='la | "$PAGER"'   # Lists human readable sizes, hidden files through pager.
@@ -120,19 +121,20 @@ function mcd {
 }
 # }}}
 
-# slit {{{
-# Prints columns 1 2 3 ... n.
-function slit {
-	awk "{ print ${(j:,:):-\$${^@}} }"
-}
-# }}}
-
 # find-exec {{{
 # Finds files and executes a command on them.
 function find-exec {
 	find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
 # }}}
+
+# newest {{{
+# show newest files
+# http://www.commandlinefu.com/commands/view/9015/find-the-most-recently-changed-files-recursively
+newest () {
+	find . -type f -printf '%TY-%Tm-%Td %TT %p\n' | grep -v cache | grep -v ".git" | sort -r | less 
+}
+# }}} 
 
 # pdfgrep {{{
 # Search through multiple pdf files for string
@@ -203,7 +205,7 @@ function dec () {
 # }}}
 
 # Backwards change directory {{{
-bd () {
+function bd () {
   (($#<1)) && {
     print -- "usage: $0 <name-of-any-parent-directory>"
     return 1
@@ -247,7 +249,33 @@ _bd () {
 compctl -V directories -K _bd bd
 # }}}
 
+# bakuf {{{
+function bakuf () {
+    oldname=$1;
+    if [ "$oldname" != "" ]; then
+        datepart=$(date +%Y-%m-%d);
+    	firstpart=${oldname%.*}
+        ext=${oldname##*.}
+        newname=$firstpart.$datepart.$ext
+        cp -R ${oldname} ${newname};
+    fi
+}
 # }}}
+
+# massrename {{{
+function massrename() {
+	local list=$(mktemp)
+	local ren=$(mktemp)
+	find -maxdepth 1 -type f >! $list
+	paste $list $list >! $ren
+	column -t $ren >! $list
+	vim $list
+	sed 's/^/mv /' $list|bash
+	rm $ren $list
+}
+
+# }}}
+
 # Zsh Bookmark movements {{{
 
 ZSH_BOOKMARKS="$HOME/.zsh/cdbookmarks"
