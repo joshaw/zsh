@@ -1,10 +1,9 @@
+# Created:  Sat 03 Jan 2015 11:44 am
+# Modified: Sat 03 Jan 2015 11:48 am
+# Author:   Josh Wainwright
+# Filename: aliases.zsh
 #
 # Defines general aliases and functions.
-#
-# Authors:
-#   Robby Russell <robby@planetargon.com>
-#   Suraj N. Kurapati <sunaku@gmail.com>
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
 # Correct commands.
@@ -132,9 +131,9 @@ function find-exec {
 # show newest files
 # http://www.commandlinefu.com/commands/view/9015/find-the-most-recently-changed-files-recursively
 newest () {
-	find . -type f -printf '%TY-%Tm-%Td %TT %p\n' | grep -v cache | grep -v ".git" | sort -r | less 
+	find . -type f -printf '%TY-%Tm-%Td %TT %p\n' | grep -v cache | grep -v ".git" | sort -r | less
 }
-# }}} 
+# }}}
 
 # pdfgrep {{{
 # Search through multiple pdf files for string
@@ -273,6 +272,8 @@ function massrename() {
 	sed 's/^/mv /' $list|bash
 	rm $ren $list
 }
+
+# }}}
 
 # }}}
 
