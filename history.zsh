@@ -1,10 +1,6 @@
 #
 # Sets history options and defines history aliases.
 #
-# Authors:
-#   Robby Russell <robby@planetargon.com>
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
 
 #
 # Variables

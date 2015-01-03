@@ -51,93 +51,79 @@ if [[ "$TERM" = "linux" ]]; then
 	# clear
 fi
 
-# Sets the terminal window title.
-function set-terminal-window-title {
-	if [[ "$TERM" == ((x|a|ml|dt|E)term*|(u|)rxvt*) ]]; then
-		printf "\e]2;%s\a" ${(V)argv}
-	fi
-}
+# # Sets the tab and window titles with a given command.
+# function set-titles-with-command {
+# 	emulate -L zsh
+# 	setopt EXTENDED_GLOB
 
-# Sets the terminal tab title.
-function set-terminal-tab-title {
-	if [[ "$TERM" == ((x|a|ml|dt|E)term*|(u|)rxvt*) ]]; then
-		printf "\e]1;%s\a" ${(V)argv}
-	fi
-}
+# 	# Get the command name that is under job control.
+# 	if [[ "${1[(w)1]}" == (fg|%*)(\;|) ]]; then
+# 		# Get the job name, and, if missing, set it to the default %+.
+# 		local job_name="${${1[(wr)%*(\;|)]}:-%+}"
 
-# Sets the tab and window titles with a given command.
-function set-titles-with-command {
-	emulate -L zsh
-	setopt EXTENDED_GLOB
+# 		# Make a local copy for use in the subshell.
+# 		local -A jobtexts_from_parent_shell
+# 		jobtexts_from_parent_shell=(${(kv)jobtexts})
 
-	# Get the command name that is under job control.
-	if [[ "${1[(w)1]}" == (fg|%*)(\;|) ]]; then
-		# Get the job name, and, if missing, set it to the default %+.
-		local job_name="${${1[(wr)%*(\;|)]}:-%+}"
+# 		jobs $job_name 2>/dev/null > >(
+# 			read index discarded
+# 			# The index is already surrounded by brackets: [1].
+# 			set-titles-with-command "${(e):-\$jobtexts_from_parent_shell$index}"
+# 		)
+# 	else
+# 		# Set the command name, or in the case of sudo or ssh, the next command.
+# 		local cmd=${${1[(wr)^(*=*|sudo|ssh|-*)]}:t}
+# 		local truncated_cmd="${cmd/(#m)?(#c15,)/${MATCH[1,12]}...}"
+# 		unset MATCH
 
-		# Make a local copy for use in the subshell.
-		local -A jobtexts_from_parent_shell
-		jobtexts_from_parent_shell=(${(kv)jobtexts})
+# 		if [[ "$TERM" == screen* ]]; then
+# 			# set-screen-window-title "$truncated_cmd"
+# 		else
+# 			set-terminal-window-title "$cmd"
+# 			set-terminal-tab-title "$truncated_cmd"
+# 		fi
+# 	fi
+# }
 
-		jobs $job_name 2>/dev/null > >(
-			read index discarded
-			# The index is already surrounded by brackets: [1].
-			set-titles-with-command "${(e):-\$jobtexts_from_parent_shell$index}"
-		)
-	else
-		# Set the command name, or in the case of sudo or ssh, the next command.
-		local cmd=${${1[(wr)^(*=*|sudo|ssh|-*)]}:t}
-		local truncated_cmd="${cmd/(#m)?(#c15,)/${MATCH[1,12]}...}"
-		unset MATCH
+# # Sets the tab and window titles with a given path.
+# function set-titles-with-path {
+# 	emulate -L zsh
+# 	setopt EXTENDED_GLOB
 
-		if [[ "$TERM" == screen* ]]; then
-			# set-screen-window-title "$truncated_cmd"
-		else
-			set-terminal-window-title "$cmd"
-			set-terminal-tab-title "$truncated_cmd"
-		fi
-	fi
-}
+# 	local absolute_path="${${1:a}:-$PWD}"
 
-# Sets the tab and window titles with a given path.
-function set-titles-with-path {
-	emulate -L zsh
-	setopt EXTENDED_GLOB
+# 	if [[ "$TERM_PROGRAM" == 'Apple_Terminal' ]]; then
+# 		printf '\e]7;%s\a' "file://$HOST${absolute_path// /%20}"
+# 	else
+# 		local abbreviated_path="${absolute_path/#$HOME/~}"
+# 		local truncated_path="${abbreviated_path/(#m)?(#c15,)/...${MATCH[-12,-1]}}"
+# 		unset MATCH
 
-	local absolute_path="${${1:a}:-$PWD}"
+# 		if [[ "$TERM" == screen* ]]; then
+# 			set-screen-window-title "$truncated_path"
+# 		else
+# 			set-terminal-window-title "$abbreviated_path"
+# 			set-terminal-tab-title "$truncated_path"
+# 		fi
+# 	fi
+# }
 
-	if [[ "$TERM_PROGRAM" == 'Apple_Terminal' ]]; then
-		printf '\e]7;%s\a' "file://$HOST${absolute_path// /%20}"
-	else
-		local abbreviated_path="${absolute_path/#$HOME/~}"
-		local truncated_path="${abbreviated_path/(#m)?(#c15,)/...${MATCH[-12,-1]}}"
-		unset MATCH
+# # Don't override precmd/preexec; append to hook array.
+# autoload -U is-at-least
+# if is-at-least 5.0.0; then
+# 	autoload -Uz add-zsh-hook
 
-		if [[ "$TERM" == screen* ]]; then
-			set-screen-window-title "$truncated_path"
-		else
-			set-terminal-window-title "$abbreviated_path"
-			set-terminal-tab-title "$truncated_path"
-		fi
-	fi
-}
+# 	# Sets the tab and window titles before the prompt is displayed.
+# 	function set-titles-precmd {
+# 		set-titles-with-path
+# 	}
+# 	add-zsh-hook precmd set-titles-precmd
 
-# Don't override precmd/preexec; append to hook array.
-autoload -U is-at-least
-if is-at-least 5.0.0; then
-	autoload -Uz add-zsh-hook
-
-	# Sets the tab and window titles before the prompt is displayed.
-	function set-titles-precmd {
-		set-titles-with-path
-	}
-	add-zsh-hook precmd set-titles-precmd
-
-	# Sets the tab and window titles before command execution.
-	function set-titles-preexec {
-		set-titles-with-command "$2"
-	}
-	add-zsh-hook preexec set-titles-preexec
-fi
+# 	# Sets the tab and window titles before command execution.
+# 	function set-titles-preexec {
+# 		set-titles-with-command "$2"
+# 	}
+# 	add-zsh-hook preexec set-titles-preexec
+# fi
 
 zsh_timing_function ${(%):-%N}
