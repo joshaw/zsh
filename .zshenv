@@ -1,17 +1,15 @@
 #
 # Defines environment variables.
 #
-dateloc=$(which date)
-mkdirloc=$(which mkdir)
-export ZSH_TIMING_TIC=$(eval $dateloc +%s%N)
+export ZSH_TIMING_TIC=$(/usr/bin/date +%s%N)
 local ZSH_TIMING_TEMP1=$ZSH_TIMING_TIC
 function zsh_timing_function() {
-	local ZSH_TIMING_TEMP2=$(eval $dateloc +%s%N)
+	local ZSH_TIMING_TEMP2=$(/usr/bin/date +%s%N)
 	local ZSH_TIMING_DIFF=$(((ZSH_TIMING_TEMP2 - ZSH_TIMING_TEMP1) / 1000000 ))
 	local file=$1
 	echo -n "Sourced $file"
 	echo " : $ZSH_TIMING_DIFF"
-	export ZSH_TIMING_TEMP1=$(eval $dateloc +%s%N)
+	export ZSH_TIMING_TEMP1=$(/usr/bin/date +%s%N)
 }
 
 #
@@ -61,12 +59,12 @@ fi
 
 if [[ ! -d "$TMPDIR" ]]; then
 	export TMPDIR="/tmp/$USER"
-	eval $mkdirloc -p -m 700 "$TMPDIR"
+	/usr/bin/mkdir -p -m 700 "$TMPDIR"
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
 if [[ ! -d "$TMPPREFIX" ]]; then
-	eval $mkdirloc -p "$TMPPREFIX"
+	/usr/bin/mkdir -p "$TMPPREFIX"
 fi
 
 zsh_timing_function ${(%):-%N}
