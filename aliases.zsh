@@ -1,5 +1,5 @@
-# Created:  Sat 03 Jan 2015 11:44 am
-# Modified: Sat 03 Jan 2015 11:48 am
+# Created:  Wed 15 Oct 2014
+# Modified: Mon 12 Jan 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -54,10 +54,6 @@ function chpwd() {
 	emulate -L zsh
 	ls -lh
 }
-
-# Directories
-alias d='dirs -v'
-for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 # File Download
 if (( $+commands[curl] )); then
