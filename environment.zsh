@@ -1,3 +1,7 @@
+# Created:  Wed 15 Oct 2014
+# Modified: Mon 12 Jan 2015
+# Author:   Josh Wainwright
+# Filename: environment.zsh
 #
 # Sets general shell options and defines environment variables.
 

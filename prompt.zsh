@@ -1,8 +1,9 @@
+# Created:  Wed 15 Oct 2014
+# Modified: Mon 12 Jan 2015
+# Author:   Josh Wainwright
+# Filename: prompt.zsh
 #
 # Loads prompt themes.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
 # Load and execute the prompt theming system.
