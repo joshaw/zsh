@@ -35,3 +35,12 @@ zsh_timing_function ${(%):-%N}
 local ZSH_TIMING_TOC=$(date +%s%N)
 local ZSH_TIMING_DIFF=$(((ZSH_TIMING_TOC - ZSH_TIMING_TIC)/1000000))
 echo $ZSH_TIMING_DIFF
+
+vman() {
+  vim -c "SuperMan $*"
+
+  if [ "$?" != "0" ]; then
+    echo "No manual entry for $*"
+  fi
+}
+compdef vman="man"
