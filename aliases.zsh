@@ -1,5 +1,5 @@
 # Created:  Wed 15 Oct 2014
-# Modified: Mon 12 Jan 2015
+# Modified: Mon 19 Jan 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -254,7 +254,8 @@ function massrename() {
 	paste $list $list >! $ren
 	column -t $ren >! $list
 	vim $list
-	sed 's/^/mv /' $list|bash
+	awk '$1 != $2 {print $0}' $list | \
+	sed 's/^/mv -v /' | bash
 	rm $ren $list
 }
 
