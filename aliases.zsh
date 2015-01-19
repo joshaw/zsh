@@ -104,7 +104,7 @@ alias mplayer='mplayer -msgcolor -nolirc -nojoystick'
 alias mute-beep='xset -b && sudo rmmod pcspkr'
 alias play-dvd='mplayer -nocache -dvd-device /dev/sr0 -mouse-movements dvdnav://'
 
-alias vimp='vim ~/.config/.info.gpg'
+alias vimp='vim ~/Documents/Details/pass.gpg'
 
 # }}}
 # Functions {{{
@@ -185,17 +185,6 @@ function pocket() {
 function google () {
 	st="$@"
 	open -fw "http://www.google.com/search?q=${st}"
-}
-# }}}
-
-# enc/dec {{{
-# Encrypt and decrypt folders using tar and openssl
-function enc () {
-	tar --create --file - --posix --gzip -- $1 | openssl enc -e -aes256 -out $1.enc
-}
-
-function dec () {
-	openssl enc -d -aes256 -in $1 | tar --extract --file - --gzip
 }
 # }}}
 
