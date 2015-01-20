@@ -246,21 +246,6 @@ function bakuf () {
 }
 # }}}
 
-# massrename {{{
-function massrename() {
-	local list=$(mktemp)
-	local ren=$(mktemp)
-	find -maxdepth 1 -type f >! $list
-	paste $list $list >! $ren
-	column -t $ren >! $list
-	vim $list
-	awk '$1 != $2 {print $0}' $list | \
-	sed 's/^/mv -v /' | bash
-	rm $ren $list
-}
-
-# }}}
-
 # }}}
 
 # Zsh Bookmark movements {{{
