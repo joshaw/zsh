@@ -67,5 +67,3 @@ for color in {0..255}; do
   BG[$color]="\e[48;5;${color}m"
 done
 unset color{s,} index
-
-zsh_timing_function ${(%):-%N}

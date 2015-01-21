@@ -1,5 +1,5 @@
-# Created:  Wed 15 Oct 2014
-# Modified: Mon 12 Jan 2015
+# Created:  Tue 15 Oct 2013
+# Modified: Wed 21 Jan 2015
 # Author:   Josh Wainwright
 # Filename: environment.zsh
 #
@@ -62,5 +62,3 @@ unsetopt CLOBBER            # Do not overwrite existing files with > and >>.
 #
 
 export WRAPMARGIN=$(( $COLUMNS - 80 ))
-
-zsh_timing_function ${(%):-%N}

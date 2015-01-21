@@ -1,5 +1,5 @@
-# Created:  Wed 15 Oct 2014
-# Modified: Mon 19 Jan 2015
+# Created:  Tue 15 Oct 2013
+# Modified: Wed 21 Jan 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -296,5 +296,6 @@ function ranger-cd {
 }
 # }}}
 
-zsh_timing_function ${(%):-%N}
+. ~/.zsh/aliases_ldra.zsh
+
 # vim: fdm=marker

@@ -1,3 +1,7 @@
+# Created:  Tue 15 Oct 2013
+# Modified: Wed 21 Jan 2015
+# Author:   Josh Wainwright
+# Filename: keybindings.zsh
 
 bindkey -e
 bindkey ';5D' backward-word
@@ -25,5 +29,3 @@ bindkey "^S" history-incremental-pattern-search-forward
 
 bindkey '[A' history-substring-search-up
 bindkey '[B' history-substring-search-down
-
-zsh_timing_function ${(%):-%N}

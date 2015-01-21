@@ -1,5 +1,5 @@
-# Created:  Wed 15 Oct 2014
-# Modified: Mon 12 Jan 2015
+# Created:  Tue 15 Oct 2013
+# Modified: Wed 21 Jan 2015
 # Author:   Josh Wainwright
 # Filename: syntax-highlighting.zsh
 #
@@ -16,5 +16,3 @@ if ! is_cygwin; then
 	ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 	source "${HOME}/.zsh/syntax/zsh-syntax-highlighting.zsh"
 fi
-
-zsh_timing_function ${(%):-%N}

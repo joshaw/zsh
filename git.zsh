@@ -1,3 +1,7 @@
+# Created:  Tue 15 Oct 2013
+# Modified: Wed 21 Jan 2015
+# Author:   Josh Wainwright
+# Filename: git.zsh
 #
 # Provides Git aliases and functions.
 #
@@ -174,5 +178,3 @@ alias gwc='git clean -n'
 alias gwC='git clean -f'
 alias gwx='git rm -r'
 alias gwX='git rm -rf'
-
-zsh_timing_function ${(%):-%N}

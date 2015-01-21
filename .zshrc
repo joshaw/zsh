@@ -1,3 +1,7 @@
+# Created:  Tue 15 Oct 2013
+# Modified: Wed 21 Jan 2015
+# Author:   Josh Wainwright
+# Filename: .zshrc
 
 if [[ $TERM == "xterm" ]]; then
 	export TERM=xterm-256color
@@ -29,12 +33,6 @@ wait
 #	ts=$(date +%s%N)
 #	tt=$((($(date +%s%N) - $ts)/1000000))
 #	echo "$file : $tt"
-
-zsh_timing_function ${(%):-%N}
-
-local ZSH_TIMING_TOC=$(date +%s%N)
-local ZSH_TIMING_DIFF=$(((ZSH_TIMING_TOC - ZSH_TIMING_TIC)/1000000))
-echo $ZSH_TIMING_DIFF
 
 vman() {
   vim -c "SuperMan $*"

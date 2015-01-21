@@ -1,3 +1,7 @@
+# Created:  Tue 15 Oct 2013
+# Modified: Wed 21 Jan 2015
+# Author:   Josh Wainwright
+# Filename: .zlogin
 #
 # Executes commands at login post-zshrc.
 #
@@ -12,4 +16,3 @@
 } &!
 
 export ZSH_SHLVL_INIT=0
-zsh_timing_function ${(%):-%N}

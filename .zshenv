@@ -1,16 +1,7 @@
-#
-# Defines environment variables.
-#
-export ZSH_TIMING_TIC=$(/usr/bin/date +%s%N)
-local ZSH_TIMING_TEMP1=$ZSH_TIMING_TIC
-function zsh_timing_function() {
-	local ZSH_TIMING_TEMP2=$(/usr/bin/date +%s%N)
-	local ZSH_TIMING_DIFF=$(((ZSH_TIMING_TEMP2 - ZSH_TIMING_TEMP1) / 1000000 ))
-	local file=$1
-	echo -n "Sourced $file"
-	echo " : $ZSH_TIMING_DIFF"
-	export ZSH_TIMING_TEMP1=$(/usr/bin/date +%s%N)
-}
+# Created:  Tue 15 Oct 2013
+# Modified: Wed 21 Jan 2015
+# Author:   Josh Wainwright
+# Filename: .zshenv
 
 #
 # Browser
@@ -66,5 +57,3 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 if [[ ! -d "$TMPPREFIX" ]]; then
 	/usr/bin/mkdir -p "$TMPPREFIX"
 fi
-
-zsh_timing_function ${(%):-%N}

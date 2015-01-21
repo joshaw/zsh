@@ -1,3 +1,8 @@
+# Created:  Tue 15 Oct 2013
+# Modified: Wed 21 Jan 2015
+# Author:   Josh Wainwright
+# Filename: history.zsh
+
 #
 # Sets history options and defines history aliases.
 #
@@ -29,5 +34,3 @@ setopt HIST_BEEP                 # Beep when accessing non-existent history.
 
 # Source module files.
 source "${HOME}/.zsh/history-substring-search/zsh-history-substring-search.zsh"
-
-zsh_timing_function ${(%):-%N}

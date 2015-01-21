@@ -1,3 +1,7 @@
+# Created:  Tue 15 Oct 2013
+# Modified: Wed 21 Jan 2015
+# Author:   Josh Wainwright
+# Filename: terminal.zsh
 #
 # Sets terminal window and tab titles.
 #
@@ -125,5 +129,3 @@ fi
 # 	}
 # 	add-zsh-hook preexec set-titles-preexec
 # fi
-
-zsh_timing_function ${(%):-%N}
