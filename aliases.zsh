@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Wed 21 Jan 2015
+# Modified: Wed 28 Jan 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -104,7 +104,16 @@ alias mplayer='mplayer -msgcolor -nolirc -nojoystick'
 alias mute-beep='xset -b && sudo rmmod pcspkr'
 alias play-dvd='mplayer -nocache -dvd-device /dev/sr0 -mouse-movements dvdnav://'
 
-alias vimp='vim ~/Documents/Details/pass.gpg'
+#alias vimp='vim ~/Documents/Details/pass.gpg'
+function vimp {
+	local search=$1
+	local file="~/Documents/Details/pass.gpg"
+	if [ -z $search ]; then
+		vim $file -c "normal gg"
+	else
+		vim $file -c "/\c^$search"
+	fi
+}
 
 # }}}
 # Functions {{{
