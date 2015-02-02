@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Wed 28 Jan 2015
+# Modified: Mon 02 Feb 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -252,6 +252,12 @@ function bakuf () {
         newname=$firstpart.$datepart.$ext
         cp -R ${oldname} ${newname};
     fi
+}
+# }}}
+
+# pwgen {{{
+function pwgen() {
+	< /dev/urandom tr -dc A-Za-z0-9 | head -c${1:-16};echo;
 }
 # }}}
 
