@@ -118,6 +118,13 @@ function vimp {
 # }}}
 # Functions {{{
 
+# exists {{{
+function exists() {
+	hash "$1" 2>&1 > /dev/null
+	return $?
+}
+# }}}
+
 # mcd {{{
 # Makes a directory and changes to it.
 function mcd {
@@ -143,11 +150,11 @@ function newest () {
 # pdfgrep {{{
 # Search through multiple pdf files for string
 function pdfgrep {
-	if hash pdfgrep 2> /dev/null; then
+	if exists pdfgrep; then
 		pdfgrep "$@"
 		exit $?
 	fi
-	if ! hash pdftotext 2> /dev/null; then
+	if ! exists pdftotext; then
 		pdftotext=/cygdrive/c/progs/Git/bin/pdftotext.exe
 	else
 		pdftotext=$(which pdftotext)
