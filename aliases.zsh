@@ -135,7 +135,7 @@ function find-exec {
 # newest {{{
 # show newest files
 # http://www.commandlinefu.com/commands/view/9015/find-the-most-recently-changed-files-recursively
-newest () {
+function newest () {
 	find . -type f -printf '%TY-%Tm-%Td %TT %p\n' | grep -v cache | grep -v ".git" | sort -r | less
 }
 # }}}
@@ -152,12 +152,12 @@ function pdfgrep {
 	else
 		pdftotext=$(which pdftotext)
 	fi
-	find . -name '*.pdf' -exec sh -c "$pdftotext \"{}\" - | grep --with-filename --label=\"{}\" --color \"$1\"" \;
+	find . -name '*.pdf' -exec sh -c "$pdftotext \"{}\" - | grep -i --with-filename --label=\"{}\" --color \"$1\"" \;
 }
 # }}}
 
 # paclist {{{
-paclist() {
+function paclist() {
 	sudo pacman -Qei $(pacman -Qu|cut -d" " -f 1)|awk ' BEGIN {FS=":"}/^Name/{printf("\033[1;36m%s\033[1;37m", $2)}/^Description/{print $2}'
 }
 # }}}
