@@ -1,4 +1,6 @@
 .zhistory
 .zcompcache/
+syntax/
+history-substring-search/
 
 cdbookmarks
