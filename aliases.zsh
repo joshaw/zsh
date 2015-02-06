@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Mon 02 Feb 2015
+# Modified: Fri 06 Feb 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -246,6 +246,28 @@ function bakuf () {
 # pwgen {{{
 function pwgen() {
 	< /dev/urandom tr -dc A-Za-z0-9 | head -c${1:-16};echo;
+}
+# }}}
+
+# cdf {{{
+function cdf() {
+	if exists dmenu; then
+		local dmenu="dmenu -i -b -l 20"
+	elif exists slmenu; then
+		local dmenu="slmenu -i -b -l 20"
+	else
+		exit
+	fi
+
+	if [[ -e ~/.files ]]; then
+		local cd_file=$(eval $dmenu < ~/.files)
+	elif exists lsall; then
+		local cd_file=$(lsall | eval $dmenu)
+	fi
+	if [[ ! -z $cd_file ]]; then
+		local cd_path=$(dirname $cd_file)
+		eval "cd $cd_path"
+	fi
 }
 # }}}
 
