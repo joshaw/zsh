@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Wed 21 Jan 2015
+# Modified: Fri 06 Feb 2015
 # Author:   Josh Wainwright
 # Filename: keybindings.zsh
 
@@ -9,6 +9,7 @@ bindkey ';5C' forward-word
 bindkey '^[[3~' delete-char
 bindkey '^[[F' end-of-line
 bindkey '^[[H' beginning-of-line
+bindkey '^B' push-line
 
 bindkey ' ' magic-space
 
