@@ -162,17 +162,6 @@ paclist() {
 }
 # }}}
 
-# shebang {{{
-# Create a new script, make executable and add shebang
-shebang() {
-	if i=$(which $1); then
-		printf '#!%s\n\n' $i >  $2 && vim + $2 && chmod 755 $2;
-	else
-		echo "'which' could not find $1, is it in your \$PATH?";
-	fi;
-}
-# }}}
-
 # svg2pdf {{{
 # Convert svg to pdf
 function svg2pdf (){
@@ -186,14 +175,6 @@ function pocket() {
 	for ARG in "$@"; do
 		echo $ARG | /usr/bin/mutt -s link add@getpocket.com
 	done
-}
-# }}}
-
-# google {{{
-# Open google search in web browser
-function google () {
-	st="$@"
-	open -fw "http://www.google.com/search?q=${st}"
 }
 # }}}
 
