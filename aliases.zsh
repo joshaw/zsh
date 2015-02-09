@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 06 Feb 2015
+# Modified: Mon 09 Feb 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -260,12 +260,13 @@ function cdf() {
 	fi
 
 	if [[ -e ~/.files ]]; then
-		local cd_file=$(eval $dmenu < ~/.files)
+		local cd_file="$(eval $dmenu < ~/.files)"
 	elif exists lsall; then
-		local cd_file=$(lsall | eval $dmenu)
+		local cd_file="$(lsall | eval $dmenu)"
 	fi
 	if [[ ! -z $cd_file ]]; then
-		local cd_path=$(dirname $cd_file)
+		local cd_path="$(dirname $cd_file)"
+		cd_path=${cd_path// /\\ }
 		eval "cd $cd_path"
 	fi
 }
