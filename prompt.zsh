@@ -1,17 +1,9 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Mon 09 Feb 2015
+# Modified: Thu 12 Feb 2015
 # Author:   Josh Wainwright
 # Filename: prompt.zsh
 #
-# Loads prompt themes.
-#
 
-# Load and execute the prompt theming system.
-autoload -Uz promptinit && promptinit
-
-# git:
-# %b => current branch
-# %a => current action (rebase/merge)
 # prompt:
 # %F => color dict
 # %f => reset color
@@ -24,8 +16,8 @@ autoload -Uz promptinit && promptinit
 # fastest possible way to check if repo is dirty
 git_dirty() {
 	# check if we're in a git repo
-	[[ "$(command git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]] || return
-	echo -n " $(git rev-parse --abbrev-ref HEAD) "
+	echo -n "$( git rev-parse --abbrev-ref HEAD) " &!
+	echo -n "$( git rev-parse --short HEAD) " &!
 	# check if it's dirty
 	command test -n "$(git status --porcelain --ignore-submodules -unormal)"
 
@@ -33,8 +25,8 @@ git_dirty() {
 }
 
 # string length ignoring ansi escapes
-string_length() {
-	echo ${#${(S%%)1//(\%([KF1]|)\{*\}|\%[Bbkf])}}
+strlen() {
+	echo $((${#${(S%%)1//(\%([KF1]|)\{*\}|\%[Bbkf])}} - 2))
 }
 
 p_precmd() {
@@ -44,30 +36,22 @@ p_precmd() {
 	local p_preprompt="\n%F{cyan}%~%F{8} $p_username%f"
 	print -P $p_preprompt
 
-	# reset value since `preexec` isn't always triggered
-	unset cmd_timestamp
-
 	# check async if there is anything to pull
 	{
 		# check if we're in a git repo
-		[[ "$(command git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]] &&
+		[[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]] &&
 		# make sure working tree is not $HOME
-		[[ "$(command git rev-parse --show-toplevel)" != "$HOME" ]] &&
-		# check check if there is anything to pull
-		command git fetch &>/dev/null &&
-		# check if there is an upstream configured for this branch
-		command git rev-parse --abbrev-ref @'{u}' &>/dev/null && {
+		[[ "$(git rev-parse --show-toplevel)" != "$HOME" ]] &&
+		{
 			local arrows=''
-			(( $(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) && arrows='v'
-			(( $(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) && arrows+='^'
-			print -Pn "\e7\e[A\e[1G\e[`string_length $p_preprompt`C%F{8}$(git_dirty)%f%F{cyan}${arrows}%f\e8"
+			local arrnum=$(git rev-list --left-only --count HEAD...@'{u}' 2> /dev/null || echo 0)
+			(( $arrnum > 0 )) && arrows+="^$arrnum"
+			print -Pn "\e7\e[A\e[1G\e[`strlen $p_preprompt`C%F{8}$(git_dirty)%F{cyan}${arrows}%f\e8"
 		}
 	} &!
 }
 
 prompt_setup() {
-	prompt_opts=(cr subst percent)
-
 	autoload -Uz add-zsh-hook
 
 	add-zsh-hook precmd p_precmd
