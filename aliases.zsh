@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Mon 09 Feb 2015
+# Modified: Wed 18 Feb 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -22,6 +22,7 @@ alias x='exit'
 # Editor
 alias e='vim'
 alias ee='gvim'
+hash nvim 2> /dev/null && alias vim='nvim'
 alias vimrc='vim -c ":e \$MYVIMRC"'
 
 alias ls='ls --color=always --group-directories-first' # Lists with colour enabled
