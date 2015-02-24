@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 06 Feb 2015
+# Modified: Tue 24 Feb 2015
 # Author:   Josh Wainwright
 # Filename: keybindings.zsh
 
@@ -30,3 +30,16 @@ bindkey "^S" history-incremental-pattern-search-forward
 
 bindkey '[A' history-substring-search-up
 bindkey '[B' history-substring-search-down
+
+# ctrl-z back to eg vim
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    fg
+    zle redisplay
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
