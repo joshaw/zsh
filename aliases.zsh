@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Wed 18 Feb 2015
+# Modified: Thu 12 Mar 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -235,7 +235,7 @@ compctl -V directories -K _bd bd
 function bakuf () {
     oldname=$1;
     if [ "$oldname" != "" ]; then
-        datepart=$(date +%Y-%m-%d);
+        datepart=$(date +%Y%m%d);
     	firstpart=${oldname%.*}
         ext=${oldname##*.}
         newname=$firstpart.$datepart.$ext
