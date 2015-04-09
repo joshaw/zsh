@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Thu 12 Mar 2015
+# Modified: Thu 09 Apr 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -75,6 +75,13 @@ else
 fi
 
 # Miscellaneous
+
+# Remind
+# alias remind='remind ~/.remind/reminders.rem'
+function remind() {
+	command remind $@ ~/.remind/reminders.rem
+}
+alias rem=remind
 
 alias suspend='sudo systemctl suspend'
 # Lists the ten most used commands.

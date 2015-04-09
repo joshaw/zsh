@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Wed 21 Jan 2015
+# Modified: Thu 09 Apr 2015
 # Author:   Josh Wainwright
 # Filename: .zshrc
 
@@ -25,14 +25,19 @@ files=(\
 
 for file in $files; do
 	if [[ -f ~/.zsh/$file ]]; then
+		# ts=$(date +%s%N)
 		source ~/.zsh/$file
+		# tt=$((($(date +%s%N) - $ts)/1000000))
+		# echo "$file : $tt"
 	fi
 done
-wait
 
-#	ts=$(date +%s%N)
-#	tt=$((($(date +%s%N) - $ts)/1000000))
-#	echo "$file : $tt"
+
+if (( $+commands[remind] )) ; then
+	if [ $SHLVL -eq 1 ]; then
+		command remind ~/.remind/reminders.rem
+	fi
+fi
 
 vman() {
   vim -c "SuperMan $*"
