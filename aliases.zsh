@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Thu 09 Apr 2015
+# Modified: Fri 10 Apr 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -268,6 +268,18 @@ function cdf() {
 }
 
 # locate {{{2
+function locate() {
+	files=~/.files
+	if [[ -f $files ]]; then
+		find $files -mtime +8 -exec sh -c \
+			'mdays=$((($(date +%s) - $(stat --printf="%Y" .files)) / (60*60*24) )); \
+			echo "database is more than 8 days old (actual age is $mdays)"' \;
+		grep "$@" $files 2> /dev/null || \
+			echo "No match found."
+	else
+	 	command locate "$@"
+	fi
+}
 
 # Zsh Bookmark movements {{{1
 
