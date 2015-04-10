@@ -9,7 +9,7 @@
 # Correct commands.
 setopt CORRECT
 
-# Aliases {{{
+# Aliases {{{1
 
 # Define general aliases.
 alias _='sudo'
@@ -112,7 +112,9 @@ alias mplayer='mplayer -msgcolor -nolirc -nojoystick'
 alias mute-beep='xset -b && sudo rmmod pcspkr'
 alias play-dvd='mplayer -nocache -dvd-device /dev/sr0 -mouse-movements dvdnav://'
 
-#alias vimp='vim ~/Documents/Details/pass.gpg'
+# Functions {{{1
+
+# vimp {{{2
 function vimp {
 	local search=$1
 	local file="~/Documents/Details/pass.gpg"
@@ -123,39 +125,32 @@ function vimp {
 	fi
 }
 
-# }}}
-# Functions {{{
-
-# exists {{{
+# exists {{{2
 function exists() {
 	hash "$1" 2>&1 > /dev/null
 	return $?
 }
-# }}}
 
-# mcd {{{
+# mcd {{{2
 # Makes a directory and changes to it.
 function mcd {
 	[[ -n "$1" ]] && mkdir -p "$1" && builtin cd "$1"
 }
-# }}}
 
-# find-exec {{{
+# find-exec {{{2
 # Finds files and executes a command on them.
 function find-exec {
 	find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
-# }}}
 
-# newest {{{
+# newest {{{2
 # show newest files
-# http://www.commandlinefu.com/commands/view/9015/find-the-most-recently-changed-files-recursively
 function newest () {
+	# http://www.commandlinefu.com/commands/view/9015/find-the-most-recently-changed-files-recursively
 	find . -type f -printf '%TY-%Tm-%Td %TT %p\n' | grep -v cache | grep -v ".git" | sort -r | less
 }
-# }}}
 
-# pdfgrep {{{
+# pdfgrep {{{2
 # Search through multiple pdf files for string
 function pdfgrep {
 	if exists pdfgrep; then
@@ -169,31 +164,27 @@ function pdfgrep {
 	fi
 	find . -name '*.pdf' -exec sh -c "$pdftotext \"{}\" - | grep -i --with-filename --label=\"{}\" --color \"$1\"" \;
 }
-# }}}
 
-# paclist {{{
+# paclist {{{2
 function paclist() {
 	sudo pacman -Qei $(pacman -Qu|cut -d" " -f 1)|awk ' BEGIN {FS=":"}/^Name/{printf("\033[1;36m%s\033[1;37m", $2)}/^Description/{print $2}'
 }
-# }}}
 
-# svg2pdf {{{
+# svg2pdf {{{2
 # Convert svg to pdf
 function svg2pdf (){
 	rsvg-convert -f pdf $1 >! $1:r.pdf
 }
-# }}}
 
-# pocket {{{
+# pocket {{{2
 # Send link to pocket
 function pocket() {
 	for ARG in "$@"; do
 		echo $ARG | /usr/bin/mutt -s link add@getpocket.com
 	done
 }
-# }}}
 
-# Backwards change directory {{{
+# Backwards change directory {{{2
 function bd () {
   (($#<1)) && {
     print -- "usage: $0 <name-of-any-parent-directory>"
@@ -236,9 +227,8 @@ _bd () {
   reply=($reply "/")
 }
 compctl -V directories -K _bd bd
-# }}}
 
-# bakuf {{{
+# bakuf {{{2
 function bakuf () {
     oldname=$1;
     if [ "$oldname" != "" ]; then
@@ -249,15 +239,13 @@ function bakuf () {
         cp -R ${oldname} ${newname};
     fi
 }
-# }}}
 
-# pwgen {{{
+# pwgen {{{2
 function pwgen() {
 	< /dev/urandom tr -dc A-Za-z0-9 | head -c${1:-16};echo;
 }
-# }}}
 
-# cdf {{{
+# cdf {{{2
 function cdf() {
 	if exists dmenu; then
 		local dmenu="dmenu -i -b -l 20"
@@ -278,11 +266,10 @@ function cdf() {
 		eval "cd $cd_path"
 	fi
 }
-# }}}
 
-# }}}
+# locate {{{2
 
-# Zsh Bookmark movements {{{
+# Zsh Bookmark movements {{{1
 
 ZSH_BOOKMARKS="$HOME/.zsh/cdbookmarks"
 
@@ -310,8 +297,8 @@ function _cdb() {
 }
 
 compctl -K _cdb cdb
-# }}}
-# Ranger Automatic cd {{{
+
+# Ranger Automatic cd {{{1
 # Automatically change the directory in bash after closing ranger
 #
 # This is a bash function for .bashrc to automatically change the directory to
@@ -328,8 +315,8 @@ function ranger-cd {
     fi
     rm -f -- "$tempfile" > /dev/null
 }
-# }}}
 
+# {{{1
 . ~/.zsh/aliases_ldra.zsh
 
 # vim: fdm=marker
