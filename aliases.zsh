@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 10 Apr 2015
+# Modified: Mon 13 Apr 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -281,6 +281,15 @@ function locate() {
 	fi
 }
 
+# axelpw {{{2
+function axelpw() {
+	exists axel || return 1
+	url=$1
+	usr=$2
+	pass=$3
+	url=${url#http://}
+	axel -a http://$usr:$pass@$url
+}
 # Zsh Bookmark movements {{{1
 
 ZSH_BOOKMARKS="$HOME/.zsh/cdbookmarks"
