@@ -1,5 +1,5 @@
 # Created:  Tue 20 Jan 2015
-# Modified: Wed 21 Jan 2015
+# Modified: Thu 16 Apr 2015
 # Author:   Josh Wainwright
 # Filename: aliases_ldra.zsh
 
@@ -19,4 +19,8 @@ function ldra-{testbed,tbvision,tbmanager,tbrun}-{Ada,C_C++}-{944,946}() {
 	p=(${(s/-/)name})
 	cp ~/.ldra/Testbed.ini.$p[3]$p[4] ~/.ldra/Testbed.ini
 	~/LDRA_Toolsuite/$p[4]/$p[3]/$p[2]
+}
+
+function cidr() {
+	ipcalc -bn $1 | grep -E "Network|HostMin|HostMax"
 }
