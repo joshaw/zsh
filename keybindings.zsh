@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Tue 24 Feb 2015
+# Modified: Thu 16 Apr 2015
 # Author:   Josh Wainwright
 # Filename: keybindings.zsh
 
@@ -14,8 +14,7 @@ bindkey '^B' push-line
 bindkey ' ' magic-space
 
 autoload -Uz narrow-to-region
-function _history-incremental-preserving-pattern-search-backward
-{
+function _history-incremental-preserving-pattern-search-backward() {
   local state
   MARK=CURSOR  # magick, else multiple ^R don't work
   narrow-to-region -p "$LBUFFER${BUFFER:+>>}" -P "${BUFFER:+<<}$RBUFFER" -S state
@@ -32,7 +31,7 @@ bindkey '[A' history-substring-search-up
 bindkey '[B' history-substring-search-down
 
 # ctrl-z back to eg vim
-fancy-ctrl-z () {
+function fancy-ctrl-z() {
   if [[ $#BUFFER -eq 0 ]]; then
     fg
     zle redisplay
@@ -43,3 +42,14 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+# Lazy loading of completion functionality
+function load-completion() {
+	if [[ "x${zshLoadedCompletion}" == "x" ]]; then
+		zshLoadedCompletion='done'
+		source ~/.zsh/completion.zsh
+		bindkey '\t' complete-word
+	fi
+}
+zle -N load-completion
+bindkey '\t' load-completion

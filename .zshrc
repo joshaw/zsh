@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Thu 09 Apr 2015
+# Modified: Thu 16 Apr 2015
 # Author:   Josh Wainwright
 # Filename: .zshrc
 
@@ -12,7 +12,6 @@ path+="${HOME}/Tools"
 
 files=(\
 	'prompt.zsh'\
-	'completion.zsh'\
 	'git.zsh'\
 	'spectrum.zsh'\
 	'environment.zsh'\
@@ -40,10 +39,10 @@ if (( $+commands[remind] )) ; then
 fi
 
 vman() {
-  vim -c "SuperMan $*"
+	vim -c "SuperMan $*"
 
-  if [ "$?" != "0" ]; then
-    echo "No manual entry for $*"
-  fi
+	if [ "$?" != "0" ]; then
+		echo "No manual entry for $*"
+	fi
+	compdef vman="man"
 }
-compdef vman="man"
