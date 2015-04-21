@@ -1,5 +1,5 @@
 # Created:  Tue 20 Jan 2015
-# Modified: Thu 16 Apr 2015
+# Modified: Tue 21 Apr 2015
 # Author:   Josh Wainwright
 # Filename: aliases_ldra.zsh
 
@@ -14,7 +14,7 @@ function ldra-{{start,stop}_licenseserver,re-read_licensefile}() {
 
 alias ldralauncher='~/ldra/launcher/ldralauncher'
 
-function ldra-{testbed,tbvision,tbmanager,tbrun}-{Ada,C_C++}-{944,946}() {
+function ldra-{testbed,tbvision,tbmanager,tbrun}-{Ada,C_C++}-{946,950}() {
 	name=$0
 	p=(${(s/-/)name})
 	cp ~/.ldra/Testbed.ini.$p[3]$p[4] ~/.ldra/Testbed.ini
