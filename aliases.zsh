@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Tue 14 Apr 2015
+# Modified: Sat 25 Apr 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -83,7 +83,8 @@ alias apt-all='sudo -- sh -c "apt-get update && apt-get upgrade && apt-get dist-
 # alias remind='remind ~/.remind/reminders.rem'
 function remind() {
 	[ $COLUMNS -gt 150 ] && cols=150 || cols=$COLUMNS
-	command remind -w${cols},4,0 $@ ~/.remind/reminders.rem
+	output=$(command remind -w${cols},4,0 $@ ~/.remind/reminders.rem)
+	[ "$output" != "No reminders." ] && printf "$output\n" || true
 }
 alias rem=remind
 alias remc='remind -clm'
