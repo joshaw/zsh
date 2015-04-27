@@ -1,9 +1,7 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Wed 21 Jan 2015
+# Modified: Sat 25 Apr 2015
 # Author:   Josh Wainwright
 # Filename: syntax-highlighting.zsh
-#
-# Source module files.
 
 is_cygwin() {
 	# Check we're running under cygwin
@@ -13,6 +11,6 @@ is_cygwin() {
 }
 
 if ! is_cygwin; then
-	ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
+	ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root line)
 	source "${HOME}/.zsh/syntax/zsh-syntax-highlighting.zsh"
 fi
