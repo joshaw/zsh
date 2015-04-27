@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Thu 12 Feb 2015
+# Modified: Sat 25 Apr 2015
 # Author:   Josh Wainwright
 # Filename: prompt.zsh
 #
@@ -42,6 +42,8 @@ p_precmd() {
 		[[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]] &&
 		# make sure working tree is not $HOME
 		[[ "$(git rev-parse --show-toplevel)" != "$HOME" ]] &&
+		# check the repo has not just been init'ed
+		git rev-list -n 1 --all &> /dev/null &&
 		{
 			local arrows=''
 			local arrnum=$(git rev-list --left-only --count HEAD...@'{u}' 2> /dev/null || echo 0)
