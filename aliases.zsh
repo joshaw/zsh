@@ -74,6 +74,9 @@ else
 	alias topm='top -o vsize'
 fi
 
+# Apt-get update all
+alias apt-all='sudo -- sh -c "apt-get update && apt-get upgrade && apt-get dist-upgrade && apt-get autoremove && apt-get autoclean && apt-get clean"'
+
 # Miscellaneous
 
 # Remind
