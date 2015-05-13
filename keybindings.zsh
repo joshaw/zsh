@@ -13,6 +13,8 @@ bindkey '^B' push-line
 
 bindkey ' ' magic-space
 
+bindkey '^[[Z' reverse-menu-complete
+
 autoload -Uz narrow-to-region
 function _history-incremental-preserving-pattern-search-backward() {
   local state
