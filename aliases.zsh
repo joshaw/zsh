@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Sat 25 Apr 2015
+# Modified: Mon 01 Jun 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -133,7 +133,7 @@ function vimp {
 
 # exists {{{2
 function exists() {
-	hash "$1" 2>&1 > /dev/null
+	hash "$1" > /dev/null 2>&1
 	return $?
 }
 
