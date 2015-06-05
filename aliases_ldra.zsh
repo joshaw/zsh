@@ -1,5 +1,5 @@
 # Created:  Tue 20 Jan 2015
-# Modified: Tue 21 Apr 2015
+# Modified: Tue 26 May 2015
 # Author:   Josh Wainwright
 # Filename: aliases_ldra.zsh
 
@@ -18,7 +18,7 @@ function ldra-{testbed,tbvision,tbmanager,tbrun}-{Ada,C_C++}-{946,950}() {
 	name=$0
 	p=(${(s/-/)name})
 	cp ~/.ldra/Testbed.ini.$p[3]$p[4] ~/.ldra/Testbed.ini
-	~/LDRA_Toolsuite/$p[4]/$p[3]/$p[2]
+	~/LDRA_Toolsuite/$p[4]/$p[3]/$p[2] &
 }
 
 function cidr() {
