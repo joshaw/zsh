@@ -1,5 +1,5 @@
-# Created:  Tue 15 Oct 2013
-# Modified: Thu 16 Apr 2015
+ # Created:  Tue 15 Oct 2013
+# Modified: Wed 17 Jun 2015
 # Author:   Josh Wainwright
 # Filename: keybindings.zsh
 
@@ -13,25 +13,6 @@ bindkey '^B' push-line
 
 bindkey ' ' magic-space
 
-bindkey '^[[Z' reverse-menu-complete
-
-autoload -Uz narrow-to-region
-function _history-incremental-preserving-pattern-search-backward() {
-  local state
-  MARK=CURSOR  # magick, else multiple ^R don't work
-  narrow-to-region -p "$LBUFFER${BUFFER:+>>}" -P "${BUFFER:+<<}$RBUFFER" -S state
-  zle end-of-history
-  zle history-incremental-pattern-search-backward
-  narrow-to-region -R state
-}
-zle -N _history-incremental-preserving-pattern-search-backward
-bindkey "^R" _history-incremental-preserving-pattern-search-backward
-bindkey -M isearch "^R" history-incremental-pattern-search-backward
-bindkey "^S" history-incremental-pattern-search-forward
-
-bindkey '[A' history-substring-search-up
-bindkey '[B' history-substring-search-down
-
 # ctrl-z back to eg vim
 function fancy-ctrl-z() {
   if [[ $#BUFFER -eq 0 ]]; then
@@ -44,14 +25,3 @@ function fancy-ctrl-z() {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
-
-# Lazy loading of completion functionality
-function load-completion() {
-	if [[ "x${zshLoadedCompletion}" == "x" ]]; then
-		zshLoadedCompletion='done'
-		source ~/.zsh/completion.zsh
-		bindkey '\t' complete-word
-	fi
-}
-zle -N load-completion
-bindkey '\t' load-completion

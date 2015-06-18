@@ -1,28 +1,15 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Wed 21 Jan 2015
+# Modified: Wed 17 Jun 2015
 # Author:   Josh Wainwright
 # Filename: history.zsh
-
-#
-# Sets history options and defines history aliases.
-#
-
-#
-# Variables
-#
 
 HISTFILE="${HOME}/.zsh/.zhistory"       # The path to the history file.
 HISTSIZE=10000                   # The maximum number of events to save in the internal history.
 SAVEHIST=10000                   # The maximum number of events to save in the history file.
 
-#
-# Options
-#
-
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-#setopt SHARE_HISTORY             # Share history between all sessions.
 setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
 setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
 setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
@@ -30,7 +17,11 @@ setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
 setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
-setopt HIST_BEEP                 # Beep when accessing non-existent history.
 
-# Source module files.
-source "${HOME}/.zsh/history-substring-search/zsh-history-substring-search.zsh"
+autoload up-line-or-beginning-search
+zle -N up-line-or-beginning-search
+bindkey '[A' up-line-or-beginning-search
+
+autoload down-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '[B' down-line-or-beginning-search

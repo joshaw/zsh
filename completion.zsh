@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 01 May 2015
+# Modified: Wed 17 Jun 2015
 # Author:   Josh Wainwright
 # Filename: completion.zsh
 #
@@ -10,13 +10,6 @@
 if [[ "$TERM" == 'dumb' ]]; then
   return 1
 fi
-
-# Add zsh-completions to $fpath.
-
-fpath=("$HOME/.zsh/custom_complete" $fpath)
-
-# Load and initialize the completion system ignoring insecure directories.
-autoload -Uz compinit && compinit -i
 
 #
 # Options
@@ -30,6 +23,9 @@ setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
 setopt AUTO_PARAM_SLASH    # If completed parameter is a directory, add a trailing slash.
 setopt LIST_PACKED         # Try to make the completiton menu smaller
 setopt MENU_COMPLETE       # Do not autoselect the first completion entry.
+setopt GLOB_COMPLETE
+
+autoload -U compinit && compinit
 
 #
 # Styles
@@ -63,9 +59,6 @@ zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
-# Increase the number of errors based on the length of the typed word.
-zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
-
 # Don't complete unavailable commands.
 zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 
@@ -92,13 +85,9 @@ zstyle ':completion::*:(-command-|export):*' fake-parameters ${${${_comps[(I)-va
 zstyle ':completion:*:(rm|kill|diff):*' ignore-line other
 zstyle ':completion:*:rm:*' file-patterns '*:all-files'
 
-# Kill
-zstyle ':completion:*:*:*:*:processes' command 'ps -u $USER -o pid,user,comm -w'
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:*:kill:*' force-list always
-zstyle ':completion:*:*:kill:*' insert-ids single
+#
+# Keybindings
+#
 
-# Man
-zstyle ':completion:*:manuals' separate-sections true
-zstyle ':completion:*:manuals.(^1*)' insert-sections true
+bindkey '^[[Z' reverse-menu-complete
+bindkey '^I' menu-complete
