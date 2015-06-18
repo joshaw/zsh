@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Mon 01 Jun 2015
+# Modified: Wed 17 Jun 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -21,7 +21,6 @@ alias x='exit'
 
 # Editor
 alias e='vim'
-alias ee='gvim'
 hash nvim 2> /dev/null && alias vim='nvim'
 alias vimrc='vim -c ":e \$MYVIMRC"'
 
@@ -47,8 +46,6 @@ if ! hash clear 2> /dev/null; then
 fi
 
 alias bat="upower -d | grep -E --color=none 'state|percentage' | sed 's/ \+/ /g' | column -s: -t"
-alias imagej="cd -q ~/Bin/ImageJ/ && ./run; cd -q -"
-
 alias chromeos="sudo cgpt add -i 6 -P 0 -S 0 /dev/mmcblk0"
 
 function chpwd() {
@@ -69,9 +66,6 @@ alias du='du -kh'
 
 if (( $+commands[htop] )); then
 	alias top=htop
-else
-	alias topc='top -o cpu'
-	alias topm='top -o vsize'
 fi
 
 # Apt-get update all
@@ -95,14 +89,10 @@ alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r 
 
 alias reload!='. ~/.zshrc'
 
-#alias ls='ls --color=auto'
 alias mv='mv -i -v'
 alias rm='rm -v'
 alias less='less -F'
 alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
-
-# Rebuild dwm, install and restart -------
-alias redwm='cd ~/.packages/dwm; makepkg -g >> PKGBUILD; makepkg -fi --noconfirm; killall dwm'
 
 # Build instructions
 alias g++='g++ -Wall -o'
@@ -141,12 +131,6 @@ function exists() {
 # Makes a directory and changes to it.
 function mcd {
 	[[ -n "$1" ]] && mkdir -p "$1" && builtin cd "$1"
-}
-
-# find-exec {{{2
-# Finds files and executes a command on them.
-function find-exec {
-	find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
 
 # newest {{{2
