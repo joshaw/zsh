@@ -1,13 +1,16 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Wed 17 Jun 2015
+# Modified: Fri 19 Jun 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
 # Defines general aliases and functions.
 #
 
-# Correct commands.
-setopt CORRECT
+# exists
+function exists() {
+	hash "$1" > /dev/null 2>&1
+	return $?
+}
 
 # Aliases {{{1
 
@@ -37,11 +40,11 @@ alias lt='ll -tr'          # Lists sorted by date, most recent last.
 alias lc='lt -c'           # Lists sorted by date, most recent last, shows change time.
 alias lu='lt -u'           # Lists sorted by date, most recent last, shows access time.
 
-if (( $+commands[vcp] )); then
+if exists vcp; then
 	alias cp='vcp -tv'
 fi
 
-if ! hash clear 2> /dev/null; then
+if ! exists clear; then
 	alias clear='printf "\033c"'
 fi
 
@@ -54,9 +57,9 @@ function chpwd() {
 }
 
 # File Download
-if (( $+commands[curl] )); then
+if exists curl; then
 	alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
-elif (( $+commands[wget] )); then
+elif exists wget; then
 	alias get='wget --continue --progress=bar --timestamping'
 fi
 
@@ -64,7 +67,7 @@ fi
 alias df='df -kh'
 alias du='du -kh'
 
-if (( $+commands[htop] )); then
+if exists htop; then
 	alias top=htop
 fi
 
@@ -121,12 +124,6 @@ function vimp {
 	fi
 }
 
-# exists {{{2
-function exists() {
-	hash "$1" > /dev/null 2>&1
-	return $?
-}
-
 # mcd {{{2
 # Makes a directory and changes to it.
 function mcd {
@@ -173,50 +170,6 @@ function pocket() {
 		echo $ARG | /usr/bin/mutt -s link add@getpocket.com
 	done
 }
-
-# Backwards change directory {{{2
-function bd () {
-  (($#<1)) && {
-    print -- "usage: $0 <name-of-any-parent-directory>"
-    return 1
-  } >&2
-  # Get parents (in reverse order)
-  local parents
-  local num_tmp="${PWD//[^\/]}"
-  local num=${#num_tmp}
-  local i
-  for i in {$((num+1))..2}
-  do
-    parents=($parents "`echo $PWD | cut -d'/' -f$i`")
-  done
-  parents=($parents "/")
-  # Build dest and 'cd' to it
-  local dest="./"
-  local parent
-  foreach parent (${parents})
-  do
-    if [[ $1 == $parent ]]
-    then
-      cd $dest
-      return 0
-    fi
-    dest+="../"
-  done
-  print -- "bd: Error: No parent directory named '$1'"
-  return 1
-}
-_bd () {
-  # Get parents (in reverse order)
-  local num_tmp="${PWD//[^\/]}"
-  local num=${#num_tmp}
-  local i
-  for i in {$((num+1))..2}
-  do
-    reply=($reply "`echo $PWD | cut -d'/' -f$i`")
-  done
-  reply=($reply "/")
-}
-compctl -V directories -K _bd bd
 
 # bakuf {{{2
 function bakuf () {
@@ -307,7 +260,7 @@ function _cdb() {
 	reply=(`cat "$ZSH_BOOKMARKS" | sed -e 's#^\(.*\)\s.*$#\1#g'`)
 }
 
-compctl -K _cdb cdb
+#compctl -K _cdb cdb
 
 # Ranger Automatic cd {{{1
 # Automatically change the directory in bash after closing ranger
