@@ -1,11 +1,11 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 10 Apr 2015
+# Modified: Fri 19 Jun 2015
 # Author:   Josh Wainwright
 # Filename: git.zsh
 #
 
 # Return if requirements are not found.
-if (( ! $+commands[git] )); then
+if ! exists git; then
   return 1
 fi
 
