@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 19 Jun 2015
+# Modified: Tue 23 Jun 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -235,18 +235,22 @@ function axelpw() {
 }
 # Zsh Bookmark movements {{{1
 
-ZSH_BOOKMARKS="$HOME/.zsh/cdbookmarks"
+SH_BOOKMARKS="$HOME/.cdbookmarks"
 
 function cdb_edit() {
-	$EDITOR "$ZSH_BOOKMARKS"
+	$EDITOR "$SH_BOOKMARKS"
 }
 
 function cdb() {
 	local entry
 	index=0
+	if [ "$1" == "list" ]; then
+		sort -dfu "$SH_BOOKMARKS"
+		return 0
+	fi
 	for entry in $(echo "$1" | tr '/' '\n'); do
 		local CD
-		CD=$(egrep "^$entry\\s" "$ZSH_BOOKMARKS" | sed "s#^$entry\\s\+##")
+		CD=$(egrep "^$entry\\s" "$SH_BOOKMARKS" | sed "s#^$entry\\s\+##")
 		if [ -z "$CD" ]; then
 			echo "$0: no such bookmark: $entry"
 			return 1
@@ -257,7 +261,7 @@ function cdb() {
 }
 
 function _cdb() {
-	reply=(`cat "$ZSH_BOOKMARKS" | sed -e 's#^\(.*\)\s.*$#\1#g'`)
+	reply=(`cat "$SH_BOOKMARKS" | sed -e 's#^\(.*\)\s.*$#\1#g'`)
 }
 
 #compctl -K _cdb cdb
