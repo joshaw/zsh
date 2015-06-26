@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Tue 23 Jun 2015
+# Modified: Thu 25 Jun 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -189,16 +189,14 @@ function pwgen() {
 }
 
 # cdf {{{2
-function cdf() {
-	if exists dmenu; then
-		local dmenu="dmenu -i -b -l 20"
-	elif exists slmenu; then
-		local dmenu="slmenu -i -b -l 20"
+function cf() {
+	if exists slmenu; then
+		local dmenu="slmenu -i -l 8"
 	else
-		exit
+		return
 	fi
 
-	if [[ -e ~/.files ]]; then
+	if [[ -f ~/.files ]]; then
 		local cd_file="$(eval $dmenu < ~/.files)"
 	elif exists lsall; then
 		local cd_file="$(lsall | eval $dmenu)"
@@ -207,6 +205,23 @@ function cdf() {
 		local cd_path="$(dirname $cd_file)"
 		cd_path=${cd_path// /\\ }
 		eval "cd $cd_path"
+	fi
+}
+
+function ef() {
+	if exists slmenu; then
+		local dmenu="slmenu -i -l 8"
+	else
+		return
+	fi
+
+	if [[ -f ~/.files ]]; then
+		local edit_file="$(eval $dmenu < ~/.files)"
+	elif exists lsall; then
+		local edit_file="$(lsall | eval $dmenu)"
+	fi
+	if [[ ! -z "$edit_file" ]]; then
+		eval "$EDITOR $edit_file"
 	fi
 }
 
