@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 19 Jun 2015
+# Modified: Fri 26 Jun 2015
 # Author:   Josh Wainwright
 # Filename: git.zsh
 #
@@ -98,15 +98,15 @@ alias giX='git rm -rf --cached'
 # Log (l)
 _git_log_oneline_format='%C(yellow)%h%C(reset) %C(green) %ad %C(reset) %s %C(white)- %an%C(reset)%C(yellow)%d%C(reset)'
 alias gl='git log --topo-order --pretty=format:${_git_log_medium_format}'
-alias gll='git log --graph --abbrev-commit --date=relative --format=format:${_git_log_oneline_format} --all'
+alias gll='git log --graph --abbrev-commit --date=relative --format=format:"${_git_log_oneline_format}" --all'
 alias gls='git log --topo-order --stat --pretty=format:${_git_log_medium_format}'
 alias gld='git log --topo-order --stat --patch --full-diff --pretty=format:${_git_log_medium_format}'
-alias glo='git log --topo-order --pretty=format:${_git_log_oneline_format}'
-alias glg='git log --topo-order --all --graph --pretty=format:${_git_log_oneline_format}'
-alias glf='git log --follow --date=short --pretty=format:${_git_log_oneline_format}'
+alias glo='git log --topo-order --pretty=format:"${_git_log_oneline_format}"'
+alias glg='git log --topo-order --all --graph --pretty=format:"${_git_log_oneline_format}"'
+alias glf='git log --follow --date=short --pretty=format:"${_git_log_oneline_format}"'
 alias glb='git log --topo-order --pretty=format:${_git_log_brief_format}'
 alias glc='git shortlog --summary --numbered'
-alias glh='git log --branches --not --remotes --date=relative --pretty=format:${_git_log_oneline_format}'
+alias glh='git log --branches --not --remotes --date=relative --pretty=format:"${_git_log_oneline_format}"'
 
 # Merge (m)
 alias gm='git merge'
