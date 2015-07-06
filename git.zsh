@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 26 Jun 2015
+# Modified: Mon 06 Jul 2015
 # Author:   Josh Wainwright
 # Filename: git.zsh
 #
@@ -107,6 +107,7 @@ alias glf='git log --follow --date=short --pretty=format:"${_git_log_oneline_for
 alias glb='git log --topo-order --pretty=format:${_git_log_brief_format}'
 alias glc='git shortlog --summary --numbered'
 alias glh='git log --branches --not --remotes --date=relative --pretty=format:"${_git_log_oneline_format}"'
+alias glp='git log --oneline --graph ORIG_HEAD..'
 
 # Merge (m)
 alias gm='git merge'
