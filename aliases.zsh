@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Wed 29 Jul 2015
+# Modified: Tue 04 Aug 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -79,7 +79,7 @@ alias apt-all='sudo -- sh -c "apt-get update && apt-get upgrade && apt-get dist-
 # Remind
 # alias remind='remind ~/.remind/reminders.rem'
 function remind() {
-	[ $COLUMNS -gt 150 ] && cols=150 || cols=$COLUMNS
+	[ -z $COLUMNS ] || [ $COLUMNS -gt 150 ] && cols=150 || cols=$COLUMNS
 	output=$(command remind -w${cols},4,0 $@ ~/.remind/reminders.rem)
 	[ "$output" != "No reminders." ] && printf "$output\n" || true
 }
@@ -302,6 +302,6 @@ function ranger-cd {
 }
 
 # {{{1
-. ~/.zsh/aliases_ldra.zsh
+#. ~/.zsh/aliases_ldra.zsh
 
 # vim: fdm=marker
