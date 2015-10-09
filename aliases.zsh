@@ -88,7 +88,10 @@ alias remc='remind -clm'
 
 alias suspend='sudo systemctl suspend'
 # Lists the ten most used commands.
-alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
+alias history-stat="cat ~/.bash/history/* | awk '{print \$1}' | sort | uniq -c | sort -n"
+function histgrep() {
+	cat ~/.bash/history/* | grep "$*" | sort | uniq
+}
 
 alias reload!='. ~/.zshrc'
 
